@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "whale-extension-boilerplate",
+  "description": "whale extension boilerplate",
+
+  "default_locale": "en",
+
+  "sidebar_action": {
+    "default_icon": {
+      "16": "icon-34.png"
+    },
+    "default_page": "extensionPage.html",
+    "default_title": "whale-extension-boilerplate",
+    "use_navigation_bar": false
+  },
+
+  "permissions": [],
+  "background": {
+    "scripts": [
+      "background.bundle.js"
+    ],
+    "persistent": false
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
