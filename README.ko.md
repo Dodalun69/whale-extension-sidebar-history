@@ -11,13 +11,13 @@ Webpack과 자동 Reload([webpack-extension-reloader](https://github.com/rubensp
 
 | 브랜치 | 설명 | 기본 설정 |
 | - | - | - |
-| master | 기본 버전 (일반적인 html, css, js 방식) | Webpack + Reloader |
+| vanilla | 기본 버전 (일반적인 html, css, js 방식) | |
 | react (준비중) | React 버전 (준비중) | Webpack + Reloader + React |
 | react-typescript (준비중) | React + 타입스크립트 버전 (준비중) | Webpack + Reloader + React + TypeScript |
 
 > Note:
 >
-> 1. 현재 적용된 Reloader 는 Hot Module Replacement 를 지원하지 않습니다. ([링크](https://github.com/rubenspgcavalcante/webpack-extension-reloader#solution-for-))
+> - 현재 적용된 Reloader 는 Hot Module Replacement 를 지원하지 않습니다. ([링크](https://github.com/rubenspgcavalcante/webpack-extension-reloader#solution-for-))
 >
 > 따라서 사이드바 확장 프로그램 개발시에는
 > 매 빌드마다 사이드바의 확장앱 페이지를 다시 열어줘야 하는 등의 문제가 있습니다.
@@ -66,6 +66,7 @@ Webpack과 자동 Reload([webpack-extension-reloader](https://github.com/rubensp
 Note:
 
 - `manifest.json` 에서 사용할 파일은 빌드 결과를 기준으로 작성하셔야 합니다.
+- `manifest.json` 의 `version` 값은 웹팩 빌드 시 `package.json` 의 버전 정보로 채워넣게 돼있으니 따로 작성하실 필요가 없습니다.
 - i18n(다국어 지원)은 [chrome.i18n API 설명(영문)](https://developer.chrome.com/extensions/i18n)을 참고해주세요.
 - `src/background/index.js`, `src/extensionPage/index.js`, `src/extensionPage/index.html` 는 webpack 빌드 설정에 연관된 파일입니다. 수정 시 유념해주세요.
 - `src/extensionPage/index.html` 에서  `src/extensionPage/index.js` 를 불러오는 `<script>` 태그는 webpack 빌드 시 `html-webpack-plugin` 플러그인으로 자동 삽입되므로, 따로 작성하실 필요가 없습니다.

@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "whale extension boilerplate",
   "scripts": {
-    "build": "webpack --config ./webpack/prod.config.js",
-    "build:dev-config": "webpack --config ./webpack/dev.config.js",
-    "start": "webpack --config ./webpack/dev.config.js --watch --env.hotreload"
+    "build": "webpack --mode production",
+    "build-dev": "webpack --mode development",
+    "start": "webpack --mode development --watch --env.hotreload"
   },
   "dependencies": {
 
