@@ -15,27 +15,26 @@ module.exports = (env, options) => {
     entry: {
       // if you modify the entry name, you must also modify the WebpackExtensionReloader's entry value.
       // 혹여나 entry 이름을 수정할 경우, WebpackExtensionReloader 의 entry 값도 수정해야 reloader 가 정상적으로 작동합니다.
-      extensionPage: path.join(__rootDir, "src", "extensionPage", "index.js"),
-      background: path.join(__rootDir, "src", "background", "index.js")
+      extensionPage: path.join(__rootDir, "src", "extensionPage", "index.tsx"),
+      background: path.join(__rootDir, "src", "background", "index.ts")
     },
     output: {
       path: path.join(__rootDir, "dist"),
       filename: "[name].bundle.js"
     },
     resolve: {
-      extensions: ['.js']
+      extensions: ['.js', '.ts', '.tsx']
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(ts|tsx)?$/,
           exclude: /node_modules/,
-          loader: "babel-loader",
-          options: {
-            presets: [
-              '@babel/preset-env',
-            ],
-          },
+          use: [
+            {
+              loader: 'ts-loader',
+            },
+          ],
         },
         {
           test: /\.scss$/,
@@ -55,15 +54,6 @@ module.exports = (env, options) => {
       ]
     },
     plugins: [
-
-      // generate `dist/extensionPage.html` from `src/extensionPage/index.html` (inject `src/extensionPage/index.js` as <script> tag)
-      // `src/extensionPage/index.html` 에 `src/extensionPage/index.js` 를 <script> 태그로 추가하여 `dist/extensionPage.html` 을 생성
-      new HtmlWebpackPlugin({
-        filename: 'extensionPage.html',
-        template: 'src/extensionPage/index.html',
-        excludeChunks: ['background'],
-      }),
-
       new CopyWebpackPlugin([
         // static files path is `dist/[filename]`. NOT `dist/static/[filename]`.
         // static 파일들의 경로는 `dist/static/[filename]` 이 아닌, `dist/[filename]` 입니다.
@@ -112,7 +102,6 @@ module.exports = (env, options) => {
     if (env['hotreload']) {
       config.plugins.push(
         new WebpackExtensionReloader({
-          port: 9090,
           reloadPage: true,
           entries: {
             extensionPage: 'extensionPage',
