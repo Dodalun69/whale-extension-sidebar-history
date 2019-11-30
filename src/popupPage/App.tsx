@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <h1>{whale.i18n.getMessage("title")}</h1>
       <h1>Popup Page</h1>
+      <img alt="sample" src="./img/sample.png" />
     </div>
   );
 }
