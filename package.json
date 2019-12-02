@@ -1,7 +1,7 @@
 {
   "name": "whale-extension-boilerplate",
-  "version": "0.0.1",
-  "description": "whale extension boilerplate",
+  "version": "1.0.0",
+  "description": "whale-extension-boilerplate",
   "scripts": {
     "build": "webpack --mode production",
     "build-dev": "webpack --mode development",
