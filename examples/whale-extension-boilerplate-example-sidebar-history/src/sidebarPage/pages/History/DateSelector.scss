@@ -1,0 +1,37 @@
+#date-selector {
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+  >.title {
+    font-size: var(--primary-small-font-size);
+  }
+
+  >.selector {
+    font-size: var(--primary-small-font-size);
+
+    >select {
+      outline: none;
+      -webkit-appearance: none;
+      border-color: var(--primary-border-color);
+      background: url(/img/arrow-down.svg) calc(100% - 15px) center no-repeat;
+      background-size: 12px;
+      background-color: var(--primary-light-background-color);
+      color: var(--primary-color);
+
+      min-width: 180px;
+      height: 32px;
+
+      border-radius: 5px;
+      padding: 5px 30px 5px 15px;
+
+      @media (prefers-color-scheme: dark) {
+        color: var(--primary-light-color);
+      }
+    }
+  }
+}
