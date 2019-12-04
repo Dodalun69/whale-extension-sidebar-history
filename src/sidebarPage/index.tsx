@@ -16,7 +16,7 @@ window.addEventListener(
     evt.dataTransfer.effectAllowed = "none";
     evt.dataTransfer.dropEffect = "none";
   },
-  false
+  false,
 );
 window.addEventListener(
   "drop",
@@ -26,7 +26,7 @@ window.addEventListener(
     evt.dataTransfer.effectAllowed = "none";
     evt.dataTransfer.dropEffect = "none";
   },
-  false
+  false,
 );
 
 ReactDOM.render(<App />, document.getElementById("root"));
