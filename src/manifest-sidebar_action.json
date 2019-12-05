@@ -15,6 +15,11 @@
     "default_title": "whale-extension-boilerplate",
     "use_navigation_bar": false
   },
+  "content_scripts": [{
+    "matches": ["https://github.com/mate131909/whale-extension-boilerplate/*"],
+    "css": ["contentScript-css-boilerplatePage.css"],
+    "js": ["contentScript-script-boilerplatePage.bundle.js"]
+  }],
 
   "permissions": [],
   "background": {

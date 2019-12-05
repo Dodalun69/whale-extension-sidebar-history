@@ -13,6 +13,12 @@
     },
     "default_popup": "popupPage.html"
   },
+  "content_scripts": [{
+    "matches": ["https://github.com/mate131909/whale-extension-boilerplate/*"],
+    "css": ["contentScript-css-boilerplatePage.css"],
+    "js": ["contentScript-script-boilerplatePage.bundle.js"]
+  }],
+  "options_page": "optionPage.html",
 
   "permissions": [],
   "background": {
