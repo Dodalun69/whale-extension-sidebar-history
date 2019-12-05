@@ -5,15 +5,13 @@
 
   "default_locale": "en",
 
-  "sidebar_action": {
+  "browser_action": {
     "default_icon": {
       "16": "icon/icon-16.png",
       "48": "icon/icon-48.png",
       "128": "icon/icon-128.png"
     },
-    "default_page": "sidebarPage.html",
-    "default_title": "whale-extension-boilerplate",
-    "use_navigation_bar": false
+    "default_popup": "popupPage.html"
   },
 
   "permissions": [],
