@@ -1,7 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 const webpack = require("webpack");
 
-const fs = require("fs");
 const path = require("path");
 
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -9,58 +8,6 @@ const WebpackExtensionReloader = require("webpack-extension-reloader");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const rootDir = path.join(__dirname, "./");
-
-// contentScript 는 여러 개가 될 수 있기 때문에,
-// 여러 개의 목록을 직접 entry 에 설정하는 것을 막기 위해
-// `src/contentScript` 내의 파일들을 자동으로 추가합니다.
-function getContentScriptsEntryData() {
-  function separateFileName(file) {
-    const name = file.substr(0, file.lastIndexOf("."));
-    const extension = file.substr(file.lastIndexOf(".") + 1, file.length);
-    return [name, extension];
-  }
-
-  function getEntryName(name, extension) {
-    if (extension === "js" || extension === "ts") {
-      return `contentScript-script-${name}`;
-    }
-    // if (extension === "css" || extension === "scss") {
-    //   return `contentScript-css-${name}`;
-    // }
-    return `contentScript-exception-${name}`;
-  }
-
-  try {
-    const files = fs.readdirSync(
-      path.join(rootDir, "src", "contentScript", "script"),
-    );
-
-    // 반환값:
-    // [{ entryName, entryPath }]
-    const entryData = files.map(file => {
-      const [name, extension] = separateFileName(file);
-
-      const entryName = getEntryName(name, extension);
-      const entryPath = path.join(
-        rootDir,
-        "src",
-        "contentScript",
-        "script",
-        file,
-      );
-
-      return {
-        entryName,
-        entryPath,
-      };
-    });
-
-    return entryData;
-  } catch {
-    // contentScript 디렉터리가 삭제되면 아무것도 추가하지 않음
-    return [];
-  }
-}
 
 module.exports = (env, options) => {
   const config = {
@@ -70,17 +17,18 @@ module.exports = (env, options) => {
       sidebarPage: path.join(rootDir, "src", "sidebarPage", "index.tsx"),
       popupPage: path.join(rootDir, "src", "popupPage", "index.tsx"),
       background: path.join(rootDir, "src", "background", "index.ts"),
-      // contentScript 는 하단 스크립트로 자동 추가됩니다.
+      // contentScript 의 script 는 하단 내용처럼 추가하시면 됩니다.
+      // CSS 파일은 contentScript-css-[name].css 양식으로 CopyWebpackPlugin 을 통해 복사됩니다.
       //
       // 추가되는 contentScript 양식(파일명이 `boilerplatePage` 일 시) :
       //
-      // "contentScript-script-boilerplatePage": path.join(
-      //   rootDir,
-      //   "src",
-      //   "contentScript",
-      //   "script",
-      //   "boilerplatePage.ts",
-      // ),
+      "contentScript-script-boilerplatePage": path.join(
+        rootDir,
+        "src",
+        "contentScript",
+        "script",
+        "boilerplatePage.ts",
+      ),
     },
     output: {
       path: path.join(rootDir, "dist"),
@@ -158,13 +106,7 @@ module.exports = (env, options) => {
     ],
   };
 
-  // contentScript (content_script) 파일들 처리
-  const contentScriptsEntryData = getContentScriptsEntryData();
-
-  contentScriptsEntryData.forEach(({ entryName, entryPath }) => {
-    config.entry[entryName] = entryPath;
-  });
-
+  // 개발 빌드 시 설정 (Reloader 추가)
   if (options.mode === "development") {
     if (!env) {
       return config;
@@ -178,11 +120,9 @@ module.exports = (env, options) => {
           reloadPage: true,
           entries: {
             // 'sidebarPage', 'background' 등의 문자열은 Webpack 의 entry 키 값과 동일해야 합니다.
-            // contentScript 는 내부에 있는 파일들이 자동으로 채워집니다.
+            // contentScript 가 여러 개라면, contentScript 배열에 또다른 contentScript entry 를 추가하시면 됩니다.
             // 확장앱 페이지가 여러 개라면, extensionPage 배열에 또다른 확장앱 페이지 entry 를 추가하시면 됩니다.
-            contentScript: contentScriptsEntryData.map(
-              ({ entryName }) => entryName,
-            ),
+            contentScript: ["contentScript-script-boilerplatePage"],
             extensionPage: ["optionPage", "popupPage", "sidebarPage"],
             background: "background",
           },
@@ -191,6 +131,7 @@ module.exports = (env, options) => {
     }
   }
 
+  // 배포용 빌드 시 설정 (빌드 디렉터리 정리)
   if (options.mode === "production") {
     config.plugins.push(
       // 배포용 빌드 시에는 빌드 디렉터리를 정리합니다.
