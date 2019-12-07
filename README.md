@@ -5,12 +5,11 @@
 > 보일러플레이트 설명, 사용 방법 안내 등을 원하시는 분은
 > `master` 브랜치의 `README` 를 읽어주세요.
 
-**`React` + `TypeScript` 버전**
+**`React` + `TypeScript` 버전**입니다.
 
-기본 예시로 들어간 이미지 출처 :
+## 개발에 도움 될 만한 내용
 
-- 아이콘: [Document icon](https://www.iconfinder.com/icons/211657/document_icon) (Ionicons)
-- Sample Image: [Image icon](https://www.iconfinder.com/icons/211677/image_icon) (Ionicons)
+[**whale-extension-boilerplate/master/#개발에 도움 될 만한 내용**](https://github.com/mate131909/whale-extension-boilerplate/tree/master#%EA%B0%9C%EB%B0%9C%EC%97%90-%EB%8F%84%EC%9B%80-%EB%90%A0-%EB%A7%8C%ED%95%9C-%EB%82%B4%EC%9A%A9)
 
 ## 파일 구조
 
@@ -40,3 +39,8 @@ static/ - 정적 폴더
 |- popupPage.html - 확장앱 페이지 코드를 참조하는 데 필요한 html 파일
 |- sidebarPage.html - 사이드바앱 페이지 코드를 참조하는 데 필요한 html 파일
 ```
+
+기본 예시로 들어간 이미지 출처 :
+
+- 아이콘: [Document icon](https://www.iconfinder.com/icons/211657/document_icon) (Ionicons)
+- Sample Image: [Image icon](https://www.iconfinder.com/icons/211677/image_icon) (Ionicons)
