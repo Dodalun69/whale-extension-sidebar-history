@@ -5,20 +5,21 @@
 
   "default_locale": "en",
 
-  "browser_action": {
+  "sidebar_action": {
     "default_icon": {
       "16": "icon/icon-16.png",
       "48": "icon/icon-48.png",
       "128": "icon/icon-128.png"
     },
-    "default_popup": "popupPage.html"
+    "default_page": "sidebarPage.html",
+    "default_title": "whale-extension-boilerplate",
+    "use_navigation_bar": false
   },
   "content_scripts": [{
     "matches": ["https://github.com/mate131909/whale-extension-boilerplate/*"],
     "css": ["contentScript-css-boilerplatePage.css"],
     "js": ["contentScript-script-boilerplatePage.bundle.js"]
   }],
-  "options_page": "optionPage.html",
 
   "permissions": [],
   "background": {

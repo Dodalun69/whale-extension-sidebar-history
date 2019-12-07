@@ -1,11 +1,10 @@
 # Whale Extension Boilerplate
 
-> 보고 계신 브랜치는 보일러플레이트 관리용 브랜치입니다.
->
-> 보일러플레이트 설명, 사용 방법 안내 등을 원하시는 분은
-> `master` 브랜치의 `README` 를 읽어주세요.
+React, TypeScript 가 적용된
+웨일 사이드바앱(`sidebar_action`)
+보일러플레이트입니다.
 
-**`React` + `TypeScript` 버전**입니다.
+[보일러플레이트 다른 버전 목록](https://github.com/mate131909/whale-extension-boilerplate)
 
 ## 개발에 도움 될 만한 내용
 
@@ -22,21 +21,15 @@ src/ - 소스파일 디렉터리
 |- background/ - 백그라운드 스크립트 폴더
 |
 |- contentScript/ - Content Script 소스 폴더
-|- optionPage/ - 옵션 페이지 소스 폴더 (일반 확장앱 전용)
-|- popupPage/ - 확장앱 팝업 페이지 소스 폴더 (일반 확장앱 전용)
-|- sidebarPage/ - 사이드바앱 페이지 소스 폴더 (사이드바앱 전용)
+|- sidebarPage/ - 사이드바앱 페이지 소스 폴더
 |
-|- manifest-sidebar_action.json - 사이드바앱용 manifest 프로필
-|- manifest-browser_action.json - 일반 확장앱 manifest
-|- manifest.json - 확장앱 manifest (위 두 프로필 중 하나로 설정)
+|- manifest.json - 확장앱 manifest (`sidebar_action` 설정)
 
 static/ - 정적 폴더
 |- icon/ - 아이콘 폴더
 |
 |- img/ - 이미지 폴더
 |
-|- optionPage.html - 옵션 페이지 코드 참조용 html 파일 (일반 확장앱 전용)
-|- popupPage.html - 확장앱 페이지 코드를 참조하는 데 필요한 html 파일
 |- sidebarPage.html - 사이드바앱 페이지 코드를 참조하는 데 필요한 html 파일
 ```
 

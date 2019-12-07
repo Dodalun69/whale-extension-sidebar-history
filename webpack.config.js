@@ -13,9 +13,7 @@ module.exports = (env, options) => {
   const config = {
     // 혹여나 entry 이름을 수정할 경우, WebpackExtensionReloader 의 entry 값도 수정해야 reloader 가 정상적으로 작동합니다.
     entry: {
-      optionPage: path.join(rootDir, "src", "optionPage", "index.tsx"),
       sidebarPage: path.join(rootDir, "src", "sidebarPage", "index.tsx"),
-      popupPage: path.join(rootDir, "src", "popupPage", "index.tsx"),
       background: path.join(rootDir, "src", "background", "index.ts"),
       // contentScript 의 script 는 하단 내용처럼 추가하시면 됩니다.
       // CSS 파일은 contentScript-css-[name].css 양식으로 CopyWebpackPlugin 을 통해 복사됩니다.
@@ -123,7 +121,7 @@ module.exports = (env, options) => {
             // contentScript 가 여러 개라면, contentScript 배열에 또다른 contentScript entry 를 추가하시면 됩니다.
             // 확장앱 페이지가 여러 개라면, extensionPage 배열에 또다른 확장앱 페이지 entry 를 추가하시면 됩니다.
             contentScript: ["contentScript-script-boilerplatePage"],
-            extensionPage: ["optionPage", "popupPage", "sidebarPage"],
+            extensionPage: ["sidebarPage"],
             background: "background",
           },
         }),
