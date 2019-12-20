@@ -1,0 +1,47 @@
+{
+  "name": "whale-extension-boilerplate-example-sidebar-history",
+  "version": "1.0.0",
+  "description": "whale-extension-boilerplate-example-sidebar-history",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-dev": "webpack --mode development",
+    "start": "webpack --mode development --watch --env.hotreload",
+    "lint": "eslint src/**/*.ts && eslint src/**/*.tsx",
+    "lint:fix": "eslint src/**/*.ts --fix && eslint src/**/*.tsx --fix"
+  },
+  "dependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.91",
+    "@types/naver-whale": "^0.0.0",
+    "@types/node": "^12.11.7",
+    "@types/react": "^16.9.15",
+    "@types/react-dom": "^16.9.3",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.5",
+    "css-loader": "^3.2.1",
+    "eslint": "^6.7.1",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "file-loader": "^5.0.2",
+    "fs-extra": "^8.1.0",
+    "node-sass": "^4.13.0",
+    "prettier": "^1.19.1",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.1",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.2.1",
+    "webpack-extension-reloader": "^1.1.1"
+  }
+}
