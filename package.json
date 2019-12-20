@@ -1,7 +1,7 @@
 {
-  "name": "whale-extension-boilerplate-example-sidebar-history",
+  "name": "whale-extension-sidebar-history",
   "version": "1.0.0",
-  "description": "whale-extension-boilerplate-example-sidebar-history",
+  "description": "whale-extension-sidebar-history",
   "scripts": {
     "build": "webpack --mode production",
     "build-dev": "webpack --mode development",

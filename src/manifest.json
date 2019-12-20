@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "whale-extension-boilerplate-example-sidebar-history",
-  "description": "whale-extension-boilerplate-example-sidebar-history",
+  "name": "whale-extension-sidebar-history",
+  "description": "whale-extension-sidebar-history",
 
   "default_locale": "en",
 
@@ -12,7 +12,7 @@
       "128": "icon/icon-128.png"
     },
     "default_page": "sidebarPage.html",
-    "default_title": "whale-extension-boilerplate-example-sidebar-history",
+    "default_title": "whale-extension-sidebar-history",
     "use_navigation_bar": false
   },
 
