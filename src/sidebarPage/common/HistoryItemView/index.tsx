@@ -1,25 +1,16 @@
 import React from "react";
+import LinkContainer from "../LinkContainer";
 
-import "./index.scss";
+// import "./index.scss";
 
 type HistoryItemViewProps = {
-  title?: string;
-  url: string;
+  history: whale.history.HistoryItem;
 };
 
-function HistoryItemView({ title, url }: HistoryItemViewProps) {
-  return (
-    <div className="history-item-view">
-      <a
-        href={url}
-        title={title || url}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <div className="title">{title || url}</div>
-      </a>
-    </div>
-  );
+function HistoryItemView({ history }: HistoryItemViewProps) {
+  const { title, url } = history;
+
+  return <LinkContainer title={title} url={url} />;
 }
 
 export default HistoryItemView;

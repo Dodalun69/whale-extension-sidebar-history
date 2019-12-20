@@ -2,20 +2,14 @@
   "title": {
     "message": "Sidebar History"
   },
+  "announcement": {
+    "message": "This is NOT whale team's official extension"
+  },
   "open_whale_history_page": {
     "message": "Open Whale History Page"
   },
-  "reference": {
-    "message": "Reference"
-  },
-  "reference__open_whale_developer_center": {
-    "message": "Open Whale Developer Center"
-  },
-  "reference__open_github_repository_whale_extension_boilerplate": {
-    "message": "Open GitHub Repository - whale-extension-boilerplate"
-  },
-  "reference__open_github_repository_this": {
-    "message": "Open GitHub Repository - This Example Project"
+  "synced_tabs": {
+    "message": "Other Devices Tabs"
   },
   "history": {
     "message": "History"

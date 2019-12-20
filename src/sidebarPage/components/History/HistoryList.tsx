@@ -19,8 +19,8 @@ function HistoryList({ historys }: HistoryListProps) {
 
   return (
     <div id="history-list">
-      {historys.map(({ id, title, url }) => (
-        <HistoryItemView key={id} title={title} url={url} />
+      {historys.map(history => (
+        <HistoryItemView key={history.id} history={history} />
       ))}
     </div>
   );

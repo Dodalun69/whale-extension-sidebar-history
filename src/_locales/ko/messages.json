@@ -2,20 +2,14 @@
   "title": {
     "message": "사이드바 방문 기록"
   },
+  "announcement": {
+    "message": "공식 확장앱이 아닙니다"
+  },
   "open_whale_history_page": {
     "message": "웨일 방문기록 페이지로"
   },
-  "reference": {
-    "message": "레퍼런스"
-  },
-  "reference__open_whale_developer_center": {
-    "message": "웨일 개발자센터 열기"
-  },
-  "reference__open_github_repository_whale_extension_boilerplate": {
-    "message": "whale-extension-boilerplate GitHub 저장소 열기"
-  },
-  "reference__open_github_repository_this": {
-    "message": "본 예제 GitHub 저장소 열기"
+  "synced_tabs": {
+    "message": "다른 기기의 탭"
   },
   "history": {
     "message": "방문 기록"
