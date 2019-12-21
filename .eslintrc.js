@@ -8,7 +8,6 @@ module.exports = {
     "prettier/@typescript-eslint",
   ],
   settings: {
-    "import/extensions": [".ts", "tsx"],
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".tsx"],
     },
@@ -22,6 +21,16 @@ module.exports = {
     },
   },
   rules: {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+      },
+    ],
     "react/jsx-filename-extension": 0,
   },
 };

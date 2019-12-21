@@ -72,7 +72,7 @@ module.exports = (env, options) => {
           to: "./", // `dist/static/[filename]` 방식을 선호하신다면 './' 부분을 './static' 으로 변경하시면 됩니다.
         },
 
-        // 다국어 지원용 데이터 폴더 복사
+        // i18n(다국어 지원용) 데이터 폴더 복사
         {
           from: path.join(rootDir, "src", "_locales"),
           to: "./_locales/",
@@ -115,9 +115,10 @@ module.exports = (env, options) => {
         // webpack-extension-reloader 설정
         // 자세한 내용은 https://github.com/rubenspgcavalcante/webpack-extension-reloader 를 참고해주세요
         new WebpackExtensionReloader({
+          port: 9090,
           reloadPage: true,
           entries: {
-            // 'sidebarPage', 'background' 등의 문자열은 Webpack 의 entry 키 값과 동일해야 합니다.
+            // 'sidebarPage', 'background' 처럼 값으로 들어가는 문자열은 Webpack 의 entry 키 값과 동일해야 합니다.
             // contentScript 가 여러 개라면, contentScript 배열에 또다른 contentScript entry 를 추가하시면 됩니다.
             // 확장앱 페이지가 여러 개라면, extensionPage 배열에 또다른 확장앱 페이지 entry 를 추가하시면 됩니다.
             contentScript: ["contentScript-script-boilerplatePage"],
