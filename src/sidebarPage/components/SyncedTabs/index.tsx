@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { SectionContainer, PageContainer, TabView } from "../../common";
 
 function renderDevice(device: chrome.sessions.Device) {
+  console.log("device", device);
+
   return (
     <SectionContainer title={device.deviceName}>
       {device.sessions.map(session => (
@@ -32,7 +34,12 @@ function SyncedTabs() {
       id="synced-tabs"
       title={whale.i18n.getMessage("synced_tabs") || "synced_tabs"}
     >
-      {devices.map(device => renderDevice(device))}
+      {devices.map((device, index) => [
+        renderDevice(device),
+        index !== devices.length - 1 ? (
+          <div style={{ marginBottom: "8px" }} />
+        ) : null,
+      ])}
     </PageContainer>
   );
 }

@@ -7,6 +7,17 @@ import SyncedTabs from "./components/SyncedTabs";
 import History from "./components/History";
 
 function App() {
+  console.log("window", window);
+
+  window.addEventListener("scroll", e => {
+    console.log("window screen", window.screen);
+    console.log("scrollY", window.scrollY);
+
+    if (window.screen.availHeight < window.scrollY) {
+      console.log("available");
+    }
+  });
+
   return (
     <div className="App">
       <div className="header">

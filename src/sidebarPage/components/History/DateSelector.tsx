@@ -8,9 +8,8 @@ type DateSelectorProps = {
 };
 
 function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
-  // 최대 14일(2주) 전 까지만 선택 가능하도록 지정
-  // (수치를 14일로 지정한 것에 특별한 의미는 없습니다)
-  const SELECT_LENGTH = 14;
+  // 최대 7일(1주) 전 까지만 선택 가능하도록 지정
+  const SELECT_LENGTH = 7;
 
   const [dateTimeOptions, setDateTimeOptions] = useState<
     { time: number; message: string }[]
@@ -33,12 +32,12 @@ function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
           // "{날짜} (오늘)"
           result.message = `${result.message} (${whale.i18n.getMessage(
             "history__today",
-          )})`;
+          ) || "history__today"})`;
         } else if (index === 1) {
           // "{날짜} (어제)"
           result.message = `${result.message} (${whale.i18n.getMessage(
             "history__yesterday",
-          )})`;
+          ) || "history__yesterday"})`;
         }
 
         return result;
@@ -59,7 +58,8 @@ function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
   return (
     <div id="date-selector">
       <div className="title">
-        {whale.i18n.getMessage("history__select_date")}
+        {whale.i18n.getMessage("history__select_date") ||
+          "history__select_date"}
       </div>
       <div className="selector">
         <select onChange={onSelectorChange} defaultValue={selectedDateTime}>

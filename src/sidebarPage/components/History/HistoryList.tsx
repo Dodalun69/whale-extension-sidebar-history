@@ -8,11 +8,13 @@ type HistoryListProps = {
 };
 
 function HistoryList({ historys }: HistoryListProps) {
+  console.log("history length", historys.length);
   // 방문 기록 데이터가 비어있을 경우 처리
   if (!(historys && historys.length > 0)) {
     return (
       <div className="announcement">
-        {whale.i18n.getMessage("history__no_history_data")}
+        {whale.i18n.getMessage("history__no_history_data") ||
+          "history__no_history_data"}
       </div>
     );
   }

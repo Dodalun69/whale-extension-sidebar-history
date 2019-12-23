@@ -49,7 +49,10 @@ function History() {
   }
 
   return (
-    <PageContainer id="history" title={whale.i18n.getMessage("history")}>
+    <PageContainer
+      id="history"
+      title={whale.i18n.getMessage("history") || "history"}
+    >
       <DateSelector
         TODAY={TODAY_MIDNIGHT.getTime()}
         onSelect={onStartDateChange}
