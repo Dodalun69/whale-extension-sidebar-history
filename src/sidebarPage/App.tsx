@@ -9,7 +9,7 @@ import History from "./components/History";
 function App() {
   console.log("window", window);
 
-  window.addEventListener("scroll", e => {
+  window.addEventListener("scroll", () => {
     console.log("window screen", window.screen);
     console.log("scrollY", window.scrollY);
 
