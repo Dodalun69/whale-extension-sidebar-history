@@ -10,8 +10,8 @@
     "lint:fix": "eslint src/**/*.ts --fix && eslint src/**/*.tsx --fix"
   },
   "dependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
     "@types/chrome": "0.0.91",
@@ -37,11 +37,11 @@
     "node-sass": "^4.13.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
-    "style-loader": "^1.1.1",
+    "style-loader": "^1.0.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.4",
     "webpack": "^4.41.4",
-    "webpack-cli": "^3.2.1",
-    "webpack-extension-reloader": "^1.1.1"
+    "webpack-cli": "^3.3.10",
+    "webpack-extension-reloader": "^1.1.4"
   }
 }
