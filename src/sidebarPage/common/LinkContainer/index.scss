@@ -6,16 +6,16 @@
 
   height: 30px;
 
-  >a {
+  > a {
     text-decoration: none;
     display: flex;
     align-items: center;
 
-    >.favicon {
+    > .favicon {
       margin-right: 16px;
     }
 
-    >.title {
+    > .title {
       color: var(--primary-light-color);
       font-size: var(--primary-small-font-size);
     }
