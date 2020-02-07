@@ -3,6 +3,7 @@ import React from "react";
 import "./global.scss";
 import "./App.scss";
 
+import Announcement from "./components/Announcement";
 import SyncedTabs from "./components/SyncedTabs";
 import History from "./components/History";
 
@@ -10,10 +11,10 @@ function App() {
   console.log("window", window);
 
   window.addEventListener("scroll", () => {
-    console.log("window screen", window.screen);
-    console.log("scrollY", window.scrollY);
+    // console.log("window screen", window.screen);
+    // console.log("scrollY", window.scrollY);
 
-    if (window.screen.availHeight < window.scrollY) {
+    if (window.screen.height < window.scrollY) {
       console.log("available");
     }
   });
@@ -32,9 +33,7 @@ function App() {
         </button>
       </div>
       <div className="content">
-        <div>
-          <h3>{whale.i18n.getMessage("announcement") || "announcement"}</h3>
-        </div>
+        <Announcement />
         <SyncedTabs />
         <History />
       </div>

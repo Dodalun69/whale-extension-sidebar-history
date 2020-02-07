@@ -1,3 +1,7 @@
+/* eslint-disable lines-around-directive */
+// eslint-disable-next-line strict
+"use strict";
+
 // eslint-disable-next-line no-unused-vars
 const webpack = require("webpack");
 
@@ -10,9 +14,12 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const rootDir = path.join(__dirname, "./");
 
 module.exports = (env, options) => {
+  console.log(env);
+  console.log(options);
   const config = {
     // 혹여나 entry 이름을 수정할 경우, WebpackExtensionReloader 의 entry 값도 수정해야 reloader 가 정상적으로 작동합니다.
     entry: {
+      background: path.join(rootDir, "src", "background", "index.ts"),
       sidebarPage: path.join(rootDir, "src", "sidebarPage", "index.tsx"),
     },
     output: {
@@ -91,21 +98,46 @@ module.exports = (env, options) => {
       return config;
     }
 
-    if (env.hotreload) {
+    if (env.reloader) {
       config.plugins.push(
         // webpack-extension-reloader 설정
         // 자세한 내용은 https://github.com/rubenspgcavalcante/webpack-extension-reloader 를 참고해주세요
         new WebpackExtensionReloader({
-          port: 9090,
+          port: 9091,
           reloadPage: true,
           entries: {
             // 'sidebarPage', 'background' 처럼 값으로 들어가는 문자열은 Webpack 의 entry 키 값과 동일해야 합니다.
             // contentScript 가 여러 개라면, contentScript 배열에 또다른 contentScript entry 를 추가하시면 됩니다.
             // 확장앱 페이지가 여러 개라면, extensionPage 배열에 또다른 확장앱 페이지 entry 를 추가하시면 됩니다.
             extensionPage: ["sidebarPage"],
+            background: "background",
           },
         }),
       );
+    } else if (env.hotreload) {
+      const portNumber = 9000;
+
+      config.devServer = {
+        contentBase: "./dist",
+        port: portNumber,
+        hot: true,
+      };
+      config.entry = Object.keys(config.entry).reduce((prev, entryName) => {
+        return {
+          ...prev,
+          [entryName]: [
+            `webpack-dev-server/client?http://localhost:${portNumber}`,
+            "webpack/hot/dev-server",
+          ].concat(config.entry[entryName]),
+        };
+      }, {});
+      config.resolve.alias = {
+        "react-dom": "@hot-loader/react-dom",
+      };
+      config.plugins = [
+        new webpack.HotModuleReplacementPlugin(),
+        ...config.plugins,
+      ];
     }
   }
 

@@ -17,6 +17,7 @@ function render(favIconBackgroundImage: string) {
         backgroundImage: favIconBackgroundImage,
         height: "16px",
         width: "16px",
+        minWidth: "16px",
         backgroundSize: "16px",
       }}
     />

@@ -38,7 +38,9 @@ function SyncedTabs() {
         renderDevice(device),
         index !== devices.length - 1 ? (
           <div style={{ marginBottom: "8px" }} />
-        ) : null,
+        ) : (
+          <div style={{ marginBottom: "5px" }} />
+        ),
       ])}
     </PageContainer>
   );

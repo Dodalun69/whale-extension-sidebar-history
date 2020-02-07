@@ -5,13 +5,16 @@
   "scripts": {
     "build": "webpack --mode production",
     "build-dev": "webpack --mode development",
-    "start": "webpack --mode development --watch --env.hotreload",
+    "start-reloader": "webpack --mode development --watch --env.reloader",
+    "start-dev-server": "webpack-dev-server --hot --mode development --env.hotreload",
     "lint": "eslint src/**/*.ts && eslint src/**/*.tsx",
     "lint:fix": "eslint src/**/*.ts --fix && eslint src/**/*.tsx --fix"
   },
   "dependencies": {
+    "@hot-loader/react-dom": "^16.11.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.18"
   },
   "devDependencies": {
     "@types/chrome": "0.0.91",
@@ -42,6 +45,7 @@
     "typescript": "^3.7.4",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
     "webpack-extension-reloader": "^1.1.4"
   }
 }
