@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CollapseToggle from "../CollapseToggle";
+import CollapseToggle from "./CollapseToggle";
 
 import "./index.scss";
 

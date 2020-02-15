@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { PageContainer } from "../../common";
+import { CollapsiblePageContainer } from "../../common";
 import DateSelector from "./DateSelector";
 import HistoryList from "./HistoryList";
 
-function History() {
+type HistoryProps = {
+  isPageOpen: boolean;
+  onPageOpenToggle: (nextState: boolean) => void;
+};
+
+function History({ isPageOpen, onPageOpenToggle }: HistoryProps) {
   const TODAY_MIDNIGHT = new Date(new Date(Date.now()).setHours(0, 0, 0, 0));
   // history.search 에 쓰일 startDate (startDate 이후 기록만 검색됨)
   const [startDate, setStartDate] = useState<Date>(new Date(TODAY_MIDNIGHT));
@@ -49,9 +54,11 @@ function History() {
   }
 
   return (
-    <PageContainer
+    <CollapsiblePageContainer
       id="history"
       title={whale.i18n.getMessage("history") || "history"}
+      isOpen={isPageOpen}
+      onToggleOpen={onPageOpenToggle}
     >
       <DateSelector
         TODAY={TODAY_MIDNIGHT.getTime()}
@@ -59,7 +66,7 @@ function History() {
       />
       <hr />
       <HistoryList historys={historys} />
-    </PageContainer>
+    </CollapsiblePageContainer>
   );
 }
 

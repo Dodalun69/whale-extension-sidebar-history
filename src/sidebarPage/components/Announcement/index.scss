@@ -1,0 +1,20 @@
+#announcement {
+  .announcement-content {
+    padding-top: 12px;
+    font-size: var(--primary-small-font-size);
+  }
+
+  .button-container {
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    display: flex;
+    justify-content: flex-end;
+
+    > button {
+      all: unset;
+      color: var(----primary-light-color);
+      text-decoration: underline;
+    }
+  }
+}

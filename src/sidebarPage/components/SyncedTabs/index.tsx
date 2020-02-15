@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { SectionContainer, PageContainer, TabView } from "../../common";
+import {
+  SectionContainer,
+  CollapsiblePageContainer,
+  TabView,
+} from "../../common";
 
 function renderDevice(device: chrome.sessions.Device) {
   console.log("device", device);
@@ -17,7 +21,12 @@ function renderDevice(device: chrome.sessions.Device) {
   );
 }
 
-function SyncedTabs() {
+type SyncedTabsProps = {
+  isPageOpen: boolean;
+  onPageOpenToggle: (nextState: boolean) => void;
+};
+
+function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
   const [devices, setDevices] = useState<chrome.sessions.Device[]>([]);
 
   const loadDevices = () => {
@@ -30,9 +39,11 @@ function SyncedTabs() {
   }, []);
 
   return (
-    <PageContainer
+    <CollapsiblePageContainer
       id="synced-tabs"
       title={whale.i18n.getMessage("synced_tabs") || "synced_tabs"}
+      isOpen={isPageOpen}
+      onToggleOpen={onPageOpenToggle}
     >
       {devices.map((device, index) => [
         renderDevice(device),
@@ -42,7 +53,7 @@ function SyncedTabs() {
           <div style={{ marginBottom: "5px" }} />
         ),
       ])}
-    </PageContainer>
+    </CollapsiblePageContainer>
   );
 }
 

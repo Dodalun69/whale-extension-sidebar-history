@@ -10,17 +10,17 @@ function CollapseToggle({ isOpen, onChange }: CollapseToggleProps) {
     <button
       type="button"
       onClick={onChange}
-      style={{ background: "none", border: "none" }}
+      style={{
+        background: "none",
+        border: "none",
+        outline: "none !important",
+        margin: "0px",
+        padding: "0px",
+        color: "var(--primary-light-color)",
+        fontSize: "var(--primary-small-font-size)",
+      }}
     >
-      {isOpen ? (
-        <img
-          alt="arrow"
-          src="/img/arrow-down.svg"
-          style={{ width: "16px", transform: "rotate(180deg)" }}
-        />
-      ) : (
-        <img alt="arrow" src="/img/arrow-down.svg" style={{ width: "16px" }} />
-      )}
+      {isOpen ? `(닫기)` : `(열기)`}
     </button>
   );
 }
