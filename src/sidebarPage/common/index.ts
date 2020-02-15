@@ -4,4 +4,5 @@ export { default as LinkContainer } from "./LinkContainer";
 export { default as CollapsiblePageContainer } from "./CollapsiblePageContainer";
 export { default as PageContainer } from "./PageContainer";
 export { default as SectionContainer } from "./SectionContainer";
+export { default as CollapsibleSectionContainer } from "./CollapsibleSectionContainer";
 export { default as TabView } from "./TabView";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  SectionContainer,
+  CollapsibleSectionContainer,
   CollapsiblePageContainer,
   TabView,
 } from "../../common";
@@ -9,7 +9,7 @@ function renderDevice(device: chrome.sessions.Device) {
   console.log("device", device);
 
   return (
-    <SectionContainer title={device.deviceName}>
+    <CollapsibleSectionContainer title={device.deviceName}>
       {device.sessions.map(session => (
         <div>
           {session.window.tabs.map(tab => (
@@ -17,7 +17,7 @@ function renderDevice(device: chrome.sessions.Device) {
           ))}
         </div>
       ))}
-    </SectionContainer>
+    </CollapsibleSectionContainer>
   );
 }
 
@@ -45,14 +45,17 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
       isOpen={isPageOpen}
       onToggleOpen={onPageOpenToggle}
     >
-      {devices.map((device, index) => [
-        renderDevice(device),
-        index !== devices.length - 1 ? (
-          <div style={{ marginBottom: "8px" }} />
-        ) : (
-          <div style={{ marginBottom: "5px" }} />
-        ),
-      ])}
+      <hr />
+      <div>
+        {devices.map((device, index) => [
+          renderDevice(device),
+          index !== devices.length - 1 ? (
+            <div style={{ marginBottom: "8px" }} />
+          ) : (
+            <div style={{ marginBottom: "5px" }} />
+          ),
+        ])}
+      </div>
     </CollapsiblePageContainer>
   );
 }
