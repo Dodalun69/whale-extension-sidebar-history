@@ -20,7 +20,9 @@ function CollapseToggle({ isOpen, onChange }: CollapseToggleProps) {
         fontSize: "var(--primary-small-font-size)",
       }}
     >
-      {isOpen ? `(닫기)` : `(열기)`}
+      {isOpen
+        ? `(${whale.i18n.getMessage("general_close") || "general_close"})`
+        : `(${whale.i18n.getMessage("general_open") || "general_open"})`}
     </button>
   );
 }

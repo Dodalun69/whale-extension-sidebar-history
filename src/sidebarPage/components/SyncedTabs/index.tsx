@@ -8,8 +8,6 @@ import {
 import "./index.scss";
 
 function renderDevice(device: chrome.sessions.Device) {
-  // console.log("device", device);
-
   return (
     <CollapsibleSectionContainer title={device.deviceName}>
       {device.sessions.map(session => (
@@ -48,7 +46,7 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
         setDevices(data);
 
         return new Promise(resolve => {
-          setTimeout(() => resolve(), 500); // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
+          setTimeout(() => resolve(), 300); // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
         });
       })
       .then(() => {
@@ -81,9 +79,15 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
       onToggleOpen={onPageOpenToggle}
     >
       <div id="sync-control">
-        <div className="status">{syncStatus ? "동기화 중..." : ""}</div>
+        <div className="status">
+          {syncStatus
+            ? whale.i18n.getMessage("synced_tabs__synchronizing") ||
+              "synced_tabs__synchronizing"
+            : ""}
+        </div>
         <button type="button" onClick={onManualSync} disabled={syncStatus}>
-          수동 동기화
+          {whale.i18n.getMessage("synced_tabs__manual_sync") ||
+            "synced_tabs__manual_sync"}
         </button>
       </div>
       <div>
@@ -97,7 +101,10 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
             ),
           ])
         ) : (
-          <div>다른 기기의 열린 탭이 없습니다.</div>
+          <div>
+            {whale.i18n.getMessage("synced_tabs__no_synced_tabs") ||
+              "synced_tabs__no_synced_tabs"}
+          </div>
         )}
       </div>
     </CollapsiblePageContainer>
