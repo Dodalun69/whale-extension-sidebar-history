@@ -14,12 +14,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const rootDir = path.join(__dirname, "./");
 
 module.exports = (env, options) => {
-  console.log(env);
-  console.log(options);
   const config = {
     // 혹여나 entry 이름을 수정할 경우, WebpackExtensionReloader 의 entry 값도 수정해야 reloader 가 정상적으로 작동합니다.
     entry: {
-      background: path.join(rootDir, "src", "background", "index.ts"),
       sidebarPage: path.join(rootDir, "src", "sidebarPage", "index.tsx"),
     },
     output: {
@@ -110,7 +107,6 @@ module.exports = (env, options) => {
             // contentScript 가 여러 개라면, contentScript 배열에 또다른 contentScript entry 를 추가하시면 됩니다.
             // 확장앱 페이지가 여러 개라면, extensionPage 배열에 또다른 확장앱 페이지 entry 를 추가하시면 됩니다.
             extensionPage: ["sidebarPage"],
-            background: "background",
           },
         }),
       );
