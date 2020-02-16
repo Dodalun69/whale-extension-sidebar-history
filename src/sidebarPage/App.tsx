@@ -8,18 +8,7 @@ import SyncedTabs from "./components/SyncedTabs";
 import History from "./components/History";
 import TopButton from "./components/TopButton";
 
-async function getStorageData(key: string): Promise<any> {
-  whale.storage.local.get([key], function(result) {
-    console.log(`Value currently is ${result.key}`);
-    return Promise.resolve(result.key);
-  });
-}
-// async function setStorageData(key: string, value: any) {
-//   chrome.storage.local.set({ [key]: value }, function() {
-//     console.log(`Value is set to ${value}`);
-//     return Promise.resolve(result.key);
-//   });
-// }
+import { Key, getStorageData, setStorageData } from "./storage";
 
 function App() {
   const [isSyncedTabsPageOpen, setIsSyncedTabsPageOpen] = useState<boolean>(
@@ -50,21 +39,56 @@ function App() {
   }
 
   function initial() {
-    getStorageData("is-syncedtabs-page-open").then((result: boolean) => {
-      setIsSyncedTabsPageOpen(result);
-    });
+    getStorageData(Key.isSyncedTabsPageOpen)
+      .then((result: boolean) => {
+        setIsSyncedTabsPageOpen(result);
+      })
+      .catch((error: Error) => {
+        if (error.message === "undefined") {
+          // 아직 값이 지정되지 않음(신규 설치)
+          setIsSyncedTabsPageOpen(true);
+        }
+      });
+    getStorageData(Key.isHistoryPageOpen)
+      .then((result: boolean) => {
+        setIsHistoryPageOpen(result);
+      })
+      .catch((error: Error) => {
+        if (error.message === "undefined") {
+          // 아직 값이 지정되지 않음(신규 설치)
+          setIsHistoryPageOpen(true);
+        }
+      });
   }
-
   function onSyncedTabsPageOpenToggle(nextState: boolean) {
-    setIsSyncedTabsPageOpen(nextState);
+    setStorageData(Key.isSyncedTabsPageOpen, nextState)
+      // eslint-disable-next-line no-console
+      .catch(err => console.error(err))
+      .finally(() => {
+        setIsSyncedTabsPageOpen(nextState);
+      });
   }
 
   function onHistoryPageOpenToggle(nextState: boolean) {
-    setIsHistoryPageOpen(nextState);
+    setStorageData(Key.isHistoryPageOpen, nextState)
+      // eslint-disable-next-line no-console
+      .catch(err => console.error(err))
+      .finally(() => {
+        setIsHistoryPageOpen(nextState);
+      });
   }
 
   useEffect(() => {
-    whale.sidebarAction.onClicked.addListener(initial);
+    initial();
+
+    whale.sidebarAction.onClicked.addListener(result => {
+      // result object: https://developers.whale.naver.com/api/extensions/sidebarAction/#onClicked
+      //
+      // eslint-disable-next-line dot-notation
+      if (result["opened"] === true) {
+        initial();
+      }
+    });
   }, []);
 
   return (

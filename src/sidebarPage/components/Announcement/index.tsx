@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PageContainer, SectionContainer } from "../../common";
 
 import "./index.scss";
 
+import { Key, getStorageData, setStorageData } from "../../storage";
+
 function Announcement() {
-  const [isShow, setIsShow] = useState<Boolean>(true);
+  const [isShow, setIsShow] = useState<Boolean>(false);
   function onNeverSeeAgain() {
-    console.log("never see again");
     setIsShow(false);
+    setStorageData(Key.isAnnouncementNeverSeeAgain, true);
   }
   function onClose() {
-    console.log("Close");
     setIsShow(false);
   }
+
+  function initial() {
+    getStorageData(Key.isAnnouncementNeverSeeAgain).catch((error: Error) => {
+      if (error.message === "undefined") {
+        // 아직 값이 지정되지 않음(신규 설치)
+        setIsShow(true);
+      }
+    });
+  }
+
+  useEffect(() => {
+    initial();
+  }, []);
 
   if (isShow === false) {
     return null;
@@ -45,7 +59,7 @@ function Announcement() {
       <div className="button-container">
         <button
           type="button"
-          className="close-see-again"
+          className="never-see-again"
           onClick={onNeverSeeAgain}
         >
           다시 보지 않기
