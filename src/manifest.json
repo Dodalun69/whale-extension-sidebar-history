@@ -13,7 +13,7 @@
     },
     "default_page": "sidebarPage.html",
     "default_title": "Sidebar History",
-    "use_navigation_bar": true
+    "use_navigation_bar": false
   },
 
   "permissions": ["history", "sessions", "tabs", "<all_urls>", "storage"],
