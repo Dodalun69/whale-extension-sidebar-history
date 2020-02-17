@@ -25,6 +25,9 @@
     border-radius: 5px;
     padding: 5px 30px 5px 30px;
 
+    -webkit-appearance: "none";
+    outline: "none";
+
     @media (prefers-color-scheme: dark) {
       color: var(--primary-light-color);
     }

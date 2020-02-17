@@ -13,7 +13,8 @@ function CollapseToggle({ isOpen, onChange }: CollapseToggleProps) {
       style={{
         background: "none",
         border: "none",
-        outline: "none !important",
+        WebkitAppearance: "none",
+        outline: "none",
         margin: "0px",
         padding: "0px",
         color: "var(--primary-light-color)",
