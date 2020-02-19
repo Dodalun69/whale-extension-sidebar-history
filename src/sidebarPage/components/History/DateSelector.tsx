@@ -8,8 +8,8 @@ type DateSelectorProps = {
 };
 
 function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
-  // 최대 7일(1주) 전 까지만 선택 가능하도록 지정
-  const SELECT_LENGTH = 7;
+  // 최대 10일 전 까지만 선택 가능하도록 지정
+  const SELECT_LENGTH = 10;
 
   const [dateTimeOptions, setDateTimeOptions] = useState<
     { time: number; message: string }[]
