@@ -1,3 +1,13 @@
+#synced-tabs {
+  .content {
+    > .announcement {
+      padding-bottom: 12px;
+
+      font-size: var(--primary-small-font-size);
+    }
+  }
+}
+
 #sync-control {
   padding-top: 12px;
   padding-bottom: 12px;

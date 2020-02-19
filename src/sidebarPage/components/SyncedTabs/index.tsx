@@ -90,7 +90,7 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
             "synced_tabs__manual_sync"}
         </button>
       </div>
-      <div>
+      <div className="content">
         {devices.length > 0 ? (
           devices.map((device, index) => [
             renderDevice(device),
@@ -101,7 +101,7 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
             ),
           ])
         ) : (
-          <div>
+          <div className="announcement">
             {whale.i18n.getMessage("synced_tabs__no_synced_tabs") ||
               "synced_tabs__no_synced_tabs"}
           </div>
