@@ -42,7 +42,7 @@ function History({ isPageOpen, onPageOpenToggle }: HistoryProps) {
     whale.history.onVisited.addListener(() => {
       updateHistoryList();
     });
-  }, [startDate]);
+  }, []);
 
   // startDate 가 변경될때마다 실행
   useEffect(() => {
