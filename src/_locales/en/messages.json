@@ -1,4 +1,12 @@
 {
+  "appName": {
+    "message": "Sidebar History",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "You can view Other Devices Tabs and Visit History on the sidebar.",
+    "description": "The description of the application, displayed in the web store."
+  },
   "title": {
     "message": "Sidebar History"
   },

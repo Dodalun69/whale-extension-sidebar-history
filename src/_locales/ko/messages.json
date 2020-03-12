@@ -1,4 +1,12 @@
 {
+  "appName": {
+    "message": "사이드바 방문 기록",
+    "description": "The title of the application, displayed in the web store."
+  },
+  "appDesc": {
+    "message": "다른 기기의 탭, 방문 기록을 사이드바에서 간단히 확인할 수 있습니다.",
+    "description": "The description of the application, displayed in the web store."
+  },
   "title": {
     "message": "사이드바 방문 기록"
   },

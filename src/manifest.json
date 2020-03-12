@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "사이드바 방문 기록 Sidebar History",
-  "description": "다른 기기의 탭, 방문 기록을 사이드바에서 간단히 확인할 수 있습니다.",
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDesc__",
 
   "default_locale": "en",
 
@@ -12,7 +12,7 @@
       "128": "icon/icon-128.png"
     },
     "default_page": "sidebarPage.html",
-    "default_title": "Sidebar History",
+    "default_title": "__MSG_appName__",
     "use_navigation_bar": false
   },
 
