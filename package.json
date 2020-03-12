@@ -1,6 +1,6 @@
 {
   "name": "whale-extension-sidebar-history",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "whale-extension-sidebar-history",
   "scripts": {
     "build": "webpack --mode production",
