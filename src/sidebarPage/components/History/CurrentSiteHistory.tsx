@@ -17,7 +17,6 @@ function CurrentSiteHistory({ currentUrl }: Props) {
   } | null>(null);
   const [historys, setHistorys] = useState<whale.history.HistoryItem[]>([]);
 
-  console.log("currentUrl", currentUrl, "urlData", urlData);
   function updateHistoryList() {
     if (!urlData) {
       return;
@@ -58,7 +57,6 @@ function CurrentSiteHistory({ currentUrl }: Props) {
     }
 
     const regResult = /.*?:\/\/(.*?)\//g.exec(currentUrl);
-    console.log("regResult", regResult);
 
     setUrlData({
       fullUrl: currentUrl,
@@ -72,7 +70,6 @@ function CurrentSiteHistory({ currentUrl }: Props) {
   }, [urlData]);
 
   if (currentUrl === null || urlData === null) {
-    console.log("asda");
     return (
       <SectionContainer
         id="current-site-history"

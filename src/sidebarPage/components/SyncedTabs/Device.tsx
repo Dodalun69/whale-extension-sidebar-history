@@ -35,8 +35,6 @@ function Session({ session }: { session: chrome.sessions.Session }) {
   });
 
   detailTabs.sort((a, b) => a.tabIndex - b.tabIndex);
-  console.log("session", detailTabs);
-
   return (
     <div className="session">
       {detailTabs.map(({ tabSessionId, tab }) => (
@@ -50,25 +48,24 @@ function getTimeDiffMessage(timeDiff: number): string {
   const ONE_HOUR = 3600000; // 1000 * 60 * 60
 
   const day = timeDiff / (ONE_HOUR * 24);
-  // console.log("day", timeDiff / (ONE_HOUR * 24));
   if (day >= 1) {
     return `${Math.round(day)}${whale.i18n.getMessage("general__day") ||
       "general__day"}`;
   }
+
   const hour = (timeDiff % (ONE_HOUR * 24)) / ONE_HOUR;
-  // console.log("hour", (timeDiff % (ONE_HOUR * 24)) / ONE_HOUR);
   if (hour >= 1) {
     return `${Math.round(hour)}${whale.i18n.getMessage("general__hour") ||
       "general__hour"}`;
   }
+
   const min = (timeDiff % ONE_HOUR) / (1000 * 60);
-  // console.log("min", (timeDiff % ONE_HOUR) / (1000 * 60));
   if (min >= 1) {
     return `${Math.round(min)}${whale.i18n.getMessage("general__minute") ||
       "general__minute"}`;
   }
+
   const sec = (timeDiff % (1000 * 60)) / 1000;
-  // console.log("sec", (timeDiff % (1000 * 60)) / 1000);
 
   return `${Math.round(sec)}${whale.i18n.getMessage("general__second") ||
     "general__second"}`;
