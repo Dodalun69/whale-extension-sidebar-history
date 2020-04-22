@@ -47,7 +47,7 @@ function History() {
     <PageContainer
       id="history"
       title={whale.i18n.getMessage("history") || "history"}
-      desc="현재 기기의 방문 기록"
+      desc={whale.i18n.getMessage("history__desc") || "history__desc"}
     >
       <CurrentSiteHistory currentUrl={currentActiveTabUrl} />
       <div style={{ marginBottom: "12px" }} />

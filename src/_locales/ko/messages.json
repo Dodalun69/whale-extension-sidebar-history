@@ -59,6 +59,12 @@
   "synced_tabs__no_synced_tabs": {
     "message": "다른 기기에서 열린 탭이 없습니다"
   },
+  "synced_tabs__not_available_in_incognito": {
+    "message": "시크릿모드에선 사용할 수 없습니다."
+  },
+  "synced_tabs__error": {
+    "message": "에러 발생"
+  },
   "history": {
     "message": "방문 기록"
   },

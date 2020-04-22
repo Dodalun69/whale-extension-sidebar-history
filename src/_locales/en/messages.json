@@ -59,6 +59,12 @@
   "synced_tabs__no_synced_tabs": {
     "message": "No tabs open on other devices"
   },
+  "synced_tabs__not_available_in_incognito": {
+    "message": "Not available in Incognito mode"
+  },
+  "synced_tabs__error": {
+    "message": "Error"
+  },
   "history": {
     "message": "History"
   },

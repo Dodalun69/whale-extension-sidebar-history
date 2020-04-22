@@ -5,38 +5,74 @@ import Device from "./Device";
 import "./index.scss";
 
 async function loadDevices(): Promise<chrome.sessions.Device[]> {
-  return new Promise(resolve => {
-    chrome.sessions.getDevices(null, data => {
-      resolve(data);
-    });
+  return new Promise((resolve, reject) => {
+    try {
+      chrome.sessions.getDevices(null, data => {
+        resolve(data);
+      });
+    } catch (error) {
+      console.error("failed to loadDevices", error);
+      reject(error);
+    }
+  });
+}
+
+async function tabsQuery(): Promise<chrome.tabs.Tab[]> {
+  return new Promise((resolve, reject) => {
+    try {
+      whale.tabs.query({ currentWindow: true, active: true }, tabs => {
+        resolve(tabs);
+      });
+    } catch (error) {
+      console.error("failed to tabsQuery", error);
+      reject(error);
+    }
   });
 }
 
 function SyncedTabs() {
   const [syncStatus, setSyncStatus] = useState<boolean>(false);
   const [devices, setDevices] = useState<chrome.sessions.Device[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  function sync() {
+  async function sync() {
     setSyncStatus(true);
 
-    loadDevices()
-      .then((data: chrome.sessions.Device[]) => {
-        setDevices(data);
+    try {
+      const tabs = await tabsQuery();
+      if (!(tabs && tabs[0] && tabs[0].url)) {
+        throw new Error();
+      }
+      const tab = tabs[0];
+      if (tab.incognito) {
+        setErrorMessage(
+          whale.i18n.getMessage("synced_tabs__not_available_in_incognito") ||
+            "synced_tabs__not_available_in_incognito",
+        );
+        throw new Error();
+      }
+      const data = await loadDevices();
 
-        return new Promise(resolve => {
-          setTimeout(() => resolve(), 500); // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
-        });
-      })
-      .then(() => {
-        setSyncStatus(false);
-      })
-      .catch(error => {
-        console.error("SyncedTabs LoadDevice False", error);
+      setDevices(data);
 
-        setDevices([]);
-        setSyncStatus(false);
-        // To do: 에러 발생 시 에러문구 설정하기
+      await new Promise(resolve => {
+        setTimeout(() => resolve(), 500); // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
       });
+      setErrorMessage(
+        whale.i18n.getMessage("synced_tabs__no_synced_tabs") ||
+          "synced_tabs__no_synced_tabs",
+      );
+
+      setSyncStatus(false);
+    } catch (error) {
+      console.error("SyncedTabs LoadDevice False", error);
+      // setErrorMessage(
+      //   whale.i18n.getMessage("synced_tabs__error") || "synced_tabs__error",
+      // );
+      setDevices([]);
+      setSyncStatus(false);
+      // To do: 에러 발생 시 에러문구 설정하기
+    }
   }
 
   useEffect(() => {
@@ -81,10 +117,7 @@ function SyncedTabs() {
           ])
         ) : (
           <div className="announcement">
-            <div>
-              {whale.i18n.getMessage("synced_tabs__no_synced_tabs") ||
-                "synced_tabs__no_synced_tabs"}
-            </div>
+            <div>{errorMessage}</div>
           </div>
         )}
       </div>
