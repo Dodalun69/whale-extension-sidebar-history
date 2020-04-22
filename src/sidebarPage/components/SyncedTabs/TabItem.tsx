@@ -1,14 +1,14 @@
 import React from "react";
-import LinkContainer from "../LinkContainer";
+import LinkContainer from "../../common/LinkContainer";
 
-type TabViewProps = {
+type Props = {
   tab: whale.tabs.Tab;
 };
 
-function TabView({ tab }: TabViewProps) {
+function TabItem({ tab }: Props) {
   const { title, url, favIconUrl } = tab;
 
   return <LinkContainer title={title} url={url} favIconUrl={favIconUrl} />;
 }
 
-export default TabView;
+export default TabItem;

@@ -1,30 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  CollapsibleSectionContainer,
-  CollapsiblePageContainer,
-  TabView,
-} from "../../common";
+import { PageContainer } from "../../common";
+import Device from "./Device";
 
 import "./index.scss";
-
-function renderDevice(device: chrome.sessions.Device) {
-  return (
-    <CollapsibleSectionContainer title={device.deviceName}>
-      {device.sessions.map(session => (
-        <div>
-          {session.window.tabs.map(tab => (
-            <TabView key={tab.id} tab={tab} />
-          ))}
-        </div>
-      ))}
-    </CollapsibleSectionContainer>
-  );
-}
-
-type SyncedTabsProps = {
-  isPageOpen: boolean;
-  onPageOpenToggle: (nextState: boolean) => void;
-};
 
 async function loadDevices(): Promise<chrome.sessions.Device[]> {
   return new Promise(resolve => {
@@ -34,7 +12,7 @@ async function loadDevices(): Promise<chrome.sessions.Device[]> {
   });
 }
 
-function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
+function SyncedTabs() {
   const [syncStatus, setSyncStatus] = useState<boolean>(false);
   const [devices, setDevices] = useState<chrome.sessions.Device[]>([]);
 
@@ -46,11 +24,18 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
         setDevices(data);
 
         return new Promise(resolve => {
-          setTimeout(() => resolve(), 300); // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
+          setTimeout(() => resolve(), 500); // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
         });
       })
       .then(() => {
         setSyncStatus(false);
+      })
+      .catch(error => {
+        console.error("SyncedTabs LoadDevice False", error);
+
+        setDevices([]);
+        setSyncStatus(false);
+        // To do: 에러 발생 시 에러문구 설정하기
       });
   }
 
@@ -72,42 +57,38 @@ function SyncedTabs({ isPageOpen, onPageOpenToggle }: SyncedTabsProps) {
   }
 
   return (
-    <CollapsiblePageContainer
+    <PageContainer
       id="synced-tabs"
       title={whale.i18n.getMessage("synced_tabs") || "synced_tabs"}
-      isOpen={isPageOpen}
-      onToggleOpen={onPageOpenToggle}
+      desc={whale.i18n.getMessage("synced_tabs__desc") || "synced_tabs__desc"}
     >
       <div id="sync-control">
-        <div className="status">
+        <button type="button" onClick={onManualSync} disabled={syncStatus}>
           {syncStatus
             ? whale.i18n.getMessage("synced_tabs__synchronizing") ||
               "synced_tabs__synchronizing"
-            : ""}
-        </div>
-        <button type="button" onClick={onManualSync} disabled={syncStatus}>
-          {whale.i18n.getMessage("synced_tabs__manual_sync") ||
-            "synced_tabs__manual_sync"}
+            : whale.i18n.getMessage("synced_tabs__manual_sync") ||
+              "synced_tabs__manual_sync"}
         </button>
       </div>
       <div className="content">
         {devices.length > 0 ? (
           devices.map((device, index) => [
-            renderDevice(device),
+            <Device device={device} />,
             index !== devices.length - 1 ? (
-              <div style={{ marginBottom: "8px" }} />
-            ) : (
-              <div style={{ marginBottom: "5px" }} />
-            ),
+              <div style={{ marginBottom: "12px" }} />
+            ) : null,
           ])
         ) : (
           <div className="announcement">
-            {whale.i18n.getMessage("synced_tabs__no_synced_tabs") ||
-              "synced_tabs__no_synced_tabs"}
+            <div>
+              {whale.i18n.getMessage("synced_tabs__no_synced_tabs") ||
+                "synced_tabs__no_synced_tabs"}
+            </div>
           </div>
         )}
       </div>
-    </CollapsiblePageContainer>
+    </PageContainer>
   );
 }
 

@@ -1,29 +1,58 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import "./index.scss";
 
-type SectionContainerProps = {
+type Props = {
   id?: string;
   title: string;
+  option?: React.ReactNode;
   subTitle?: string;
+  collapsibleConfigure?: {
+    defaultStatus: boolean;
+    isFixed?: boolean;
+  };
   children: React.ReactNode;
 };
 
 function SectionContainer({
   id,
   title,
-  subTitle,
+  option,
+  collapsibleConfigure = {
+    defaultStatus: true,
+    isFixed: false,
+  },
   children,
-}: SectionContainerProps) {
+}: Props) {
+  const { defaultStatus, isFixed } = collapsibleConfigure;
+  const [isOpenState, setIsOpenState] = useState<boolean>(defaultStatus);
+
+  function onClick() {
+    if (isFixed) {
+      return;
+    }
+    setIsOpenState(!isOpenState);
+  }
+
   return (
     <div id={id} className="section-container">
-      <div className="header">
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+      <header onClick={onClick} role="button" tabIndex={0}>
         <div className="title-container">
           <h1 className="title">{title}</h1>
-          {subTitle ? <h2 className="sub-title">{subTitle}</h2> : null}
         </div>
-      </div>
-      <div className="content">{children}</div>
+        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+        <div
+          className="option"
+          onClick={e => {
+            e.stopPropagation();
+          }}
+          role="button"
+          tabIndex={0}
+        >
+          {option || null}
+        </div>
+      </header>
+      {isOpenState ? <div className="content">{children}</div> : <div />}
     </div>
   );
 }

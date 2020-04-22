@@ -31,13 +31,13 @@ function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
         if (index === 0) {
           // "{날짜} (오늘)"
           result.message = `${result.message} (${whale.i18n.getMessage(
-            "history__today",
-          ) || "history__today"})`;
+            "general__today",
+          ) || "general__today"})`;
         } else if (index === 1) {
           // "{날짜} (어제)"
           result.message = `${result.message} (${whale.i18n.getMessage(
-            "history__yesterday",
-          ) || "history__yesterday"})`;
+            "general__yesterday",
+          ) || "general__yesterday"})`;
         }
 
         return result;
@@ -57,10 +57,6 @@ function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
 
   return (
     <div id="date-selector">
-      <div className="title">
-        {whale.i18n.getMessage("history__select_date") ||
-          "history__select_date"}
-      </div>
       <div className="selector">
         <select onChange={onSelectorChange} defaultValue={selectedDateTime}>
           {dateTimeOptions.map(({ time, message }) => (

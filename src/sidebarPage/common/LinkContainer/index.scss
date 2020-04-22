@@ -3,21 +3,24 @@
   white-space: nowrap;
 
   height: 30px;
+  padding-left: 12px;
+  padding-right: 12px;
 
-  > a {
+  >a {
     width: 100%;
     text-decoration: none;
     display: flex;
     align-items: center;
 
-    > .favicon {
-      margin-right: 16px;
+    >.favicon {
+      margin-right: 12px;
     }
 
-    > .title {
+    >.title {
+      padding-right: 6px;
       overflow: hidden;
       text-overflow: ellipsis;
-      color: var(--primary-light-color);
+      color: var(--primary-font-color);
       font-size: var(--primary-small-font-size);
     }
   }

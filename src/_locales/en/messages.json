@@ -7,20 +7,18 @@
     "message": "You can view Other Devices Tabs and Visit History on the sidebar.",
     "description": "The description of the application, displayed in the web store."
   },
-  "title": {
-    "message": "Sidebar History"
+  "header__title": {
+    "message": "Sidebar History",
+    "description": "The Title of the application"
   },
-  "open_whale_history_page": {
+  "header__open_whale_history_page": {
     "message": "Open Whale History Page"
-  },
-  "general_open": {
-    "message": "Open"
-  },
-  "general_close": {
-    "message": "Close"
   },
   "announcement": {
     "message": "Announcement"
+  },
+  "announcement__desc": {
+    "message": "2.0.0 (2020-04-22 Update)"
   },
   "announcement__notice": {
     "message": "Notice"
@@ -29,7 +27,7 @@
     "message": "This extension is produced by a personal user. This is not an official extension for Whale."
   },
   "announcement__notice_2": {
-    "message": "Please leave your improvements and problems in the Whale Store comments."
+    "message": "Please leave your improvements and problems in the Whale Store comments. (Click 'Leave Comment' at the bottom)"
   },
   "announcement__tip": {
     "message": "Tip"
@@ -38,7 +36,7 @@
     "message": "The 'Other Devices Tabs' list is automatically synchronized when this page opens. Click the 'Manual Sync' only when real-time variation is required."
   },
   "announcement__tip_2": {
-    "message": "The 'History' list shows only the current device's history. To view the full history, including the records of other devices, click on the top 'Open Whale History Page'."
+    "message": "The 'History' list shows only the current device's history. To view the full history, including the historys of other devices, click on the top 'Open Whale History Page'."
   },
   "announcement__never_see_again": {
     "message": "Never see again"
@@ -48,6 +46,9 @@
   },
   "synced_tabs": {
     "message": "Other Devices Tabs"
+  },
+  "synced_tabs__desc": {
+    "message": "Tabs on other devices logged in"
   },
   "synced_tabs__manual_sync": {
     "message": "Manual Sync"
@@ -61,16 +62,46 @@
   "history": {
     "message": "History"
   },
-  "history__no_history_data": {
+  "history__desc": {
+    "message": "Visit history for the current device"
+  },
+  "history__current_site_history": {
+    "message": "Current Website History"
+  },
+  "history__current_site_history__unknown_site": {
+    "message": "Unknow website"
+  },
+  "history__current_site_history__no_history_data": {
+    "message": "No history data found for the current website."
+  },
+  "history__entire_history": {
+    "message": "Entire History"
+  },
+  "history__entire_history__no_history_data": {
     "message": "No history data found for that date."
   },
-  "history__select_date": {
-    "message": "Select Date"
+  "footer__review": {
+    "message": "Leave Comments"
   },
-  "history__today": {
+  "general__day": {
+    "message": " day"
+  },
+  "general__hour": {
+    "message": " hour"
+  },
+  "general__minute": {
+    "message": " min"
+  },
+  "general__second": {
+    "message": " sec"
+  },
+  "general__ago": {
+    "message": "ago"
+  },
+  "general__today": {
     "message": "Today"
   },
-  "history__yesterday": {
-    "message": "Yesterdat"
+  "general__yesterday": {
+    "message": "Yesterday"
   }
 }

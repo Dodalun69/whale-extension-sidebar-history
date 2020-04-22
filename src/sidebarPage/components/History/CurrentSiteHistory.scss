@@ -1,0 +1,9 @@
+#current-site-history {
+  .current-site-url {
+    max-width: 140px;
+    font-size: var(--primary-small-font-size);
+    color: var(--primary-light-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
