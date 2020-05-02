@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 
+import * as whaleApi from "../../../util/whaleApi";
 import "./DateSelector.scss";
 
 type DateSelectorProps = {
@@ -30,14 +31,14 @@ function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
 
         if (index === 0) {
           // "{날짜} (오늘)"
-          result.message = `${result.message} (${whale.i18n.getMessage(
+          result.message = `${result.message} (${whaleApi.i18nGetMessage(
             "general__today",
-          ) || "general__today"})`;
+          )})`;
         } else if (index === 1) {
           // "{날짜} (어제)"
-          result.message = `${result.message} (${whale.i18n.getMessage(
+          result.message = `${result.message} (${whaleApi.i18nGetMessage(
             "general__yesterday",
-          ) || "general__yesterday"})`;
+          )})`;
         }
 
         return result;

@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import "./global.scss";
 import "./App.scss";
 
+import * as whaleApi from "../util/whaleApi";
+
 import Announcement from "./components/Announcement";
 import SyncedTabs from "./components/SyncedTabs";
 import History from "./components/History";
@@ -30,13 +32,12 @@ function App() {
     <div className="App">
       <header>
         <div>
-          <h1>{whale.i18n.getMessage("header__title") || "header__title"}</h1>
+          <h1>{whaleApi.i18nGetMessage("header__title")}</h1>
           <button
             type="button"
             onClick={() => whale.tabs.create({ url: "whale://history/" })}
           >
-            {whale.i18n.getMessage("header__open_whale_history_page") ||
-              "header__open_whale_history_page"}
+            {whaleApi.i18nGetMessage("header__open_whale_history_page")}
           </button>
         </div>
       </header>

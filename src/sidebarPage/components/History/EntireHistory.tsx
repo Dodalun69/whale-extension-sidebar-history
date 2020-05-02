@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { SectionContainer } from "../../common";
+import * as whaleApi from "../../../util/whaleApi";
 import DateSelector from "./DateSelector";
 import HistoryList from "./HistoryList";
 
@@ -12,7 +13,7 @@ function EntireHistory() {
   const [startDate, setStartDate] = useState<Date>(new Date(TODAY_MIDNIGHT));
   const [historys, setHistorys] = useState<whale.history.HistoryItem[]>([]);
 
-  function updateHistoryList() {
+  async function updateHistoryList() {
     // startDate(현재 선택된 날짜) 하루 동안 방문한 기록만 검색하기 위해
     // 선택된 날짜 하루 뒤를 endDate 로 정의
     const endDate = new Date(startDate);
@@ -20,20 +21,15 @@ function EntireHistory() {
 
     // startDate(현재 선택된 날짜의 0시) ~ endDate(24시간 뒤)
     // 까지의 기록을 검색
-    whale.history.search(
-      {
-        text: "",
-        maxResults: 0,
-        startTime: startDate.getTime(),
-        endTime: endDate.getTime(),
-      },
-      (results: whale.history.HistoryItem[]) => {
-        setHistorys(results);
-      },
-    );
+    const results = await whaleApi.historySearch({
+      text: "",
+      maxResults: 0,
+      startTime: startDate.getTime(),
+      endTime: endDate.getTime(),
+    });
+    setHistorys(results);
   }
 
-  // 맨 처음 한번만 실행
   useEffect(() => {
     // 방문 기록이 추가될때 재로딩
     whale.history.onVisited.addListener(() => {
@@ -54,10 +50,7 @@ function EntireHistory() {
   return (
     <SectionContainer
       id="entire-history"
-      title={
-        whale.i18n.getMessage("history__entire_history") ||
-        "history__entire_history"
-      }
+      title={whaleApi.i18nGetMessage("history__entire_history")}
       option={
         // eslint-disable-next-line react/jsx-wrap-multilines
         <DateSelector
@@ -72,10 +65,9 @@ function EntireHistory() {
     >
       <HistoryList
         historys={historys}
-        fallbackMessage={
-          whale.i18n.getMessage("history__entire_history__no_history_data") ||
-          "history__entire_history__no_history_data"
-        }
+        fallbackMessage={whaleApi.i18nGetMessage(
+          "history__entire_history__no_history_data",
+        )}
       />
     </SectionContainer>
   );

@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { PageContainer, SectionContainer } from "../../common";
+import * as whaleApi from "../../../util/whaleApi";
 
 import "./index.scss";
 
 import { Key, setStorageData } from "../../storage";
 
 function renderAnnounceMessage(messageName: string) {
-  return (
-    <div className="announce">
-      {whale.i18n.getMessage(messageName) || messageName}
-    </div>
-  );
+  return <div className="announce">{whaleApi.i18nGetMessage(messageName)}</div>;
 }
 
 function Announcement() {
@@ -31,15 +28,12 @@ function Announcement() {
   return (
     <PageContainer
       id="announcement"
-      title={whale.i18n.getMessage("announcement") || "announcement"}
-      desc={whale.i18n.getMessage("announcement__desc") || "announcement__desc"}
+      title={whaleApi.i18nGetMessage("announcement")}
+      desc={whaleApi.i18nGetMessage("announcement__desc")}
     >
       <div className="announcement-content">
         <SectionContainer
-          title={
-            whale.i18n.getMessage("announcement__notice") ||
-            "announcement__notice"
-          }
+          title={whaleApi.i18nGetMessage("announcement__notice")}
         >
           {renderAnnounceMessage("announcement__notice_1")}
           {/* announcement__notice_1 */}
@@ -49,11 +43,7 @@ function Announcement() {
           {/* 개선 및 문제점은 웨일 스토어 댓글에 남겨주세요. (최하단의 '리뷰 남기기' 클릭) */}
         </SectionContainer>
         <div style={{ height: "12px" }} />
-        <SectionContainer
-          title={
-            whale.i18n.getMessage("announcement__tip") || "announcement__tip"
-          }
-        >
+        <SectionContainer title={whaleApi.i18nGetMessage("announcement__tip")}>
           {renderAnnounceMessage("announcement__tip_1")}
           {/* announcement__tip_1 */}
           {/* '다른 기기의 탭' 목록은 이 페이지가 열릴 때 자동으로 동기화됩니다. '수동 동기화' 기능은 실시간 변동이 필요할 때만 사용하시면 됩니다. */}
@@ -68,12 +58,10 @@ function Announcement() {
           className="never-see-again"
           onClick={onNeverSeeAgain}
         >
-          {whale.i18n.getMessage("announcement__never_see_again") ||
-            "announcement__never_see_again"}
+          {whaleApi.i18nGetMessage("announcement__never_see_again")}
         </button>
         <button type="button" className="close" onClick={onClose}>
-          {whale.i18n.getMessage("announcement__close") ||
-            "announcement__close"}
+          {whaleApi.i18nGetMessage("announcement__close")}
         </button>
       </div>
     </PageContainer>
