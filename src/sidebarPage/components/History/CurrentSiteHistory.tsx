@@ -40,6 +40,8 @@ function CurrentSiteHistory({ currentUrl }: Props) {
           return result;
         }, []);
 
+        filteredByUrl.reverse();
+
         setHistorys(filteredByUrl);
       },
     );
