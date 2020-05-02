@@ -51,5 +51,7 @@ body {
   >main {
     margin-top: 90px;
     margin-bottom: 100px;
+
+    min-height: calc(100vh - (90px + 100px + 37px));
   }
 }
