@@ -5,6 +5,13 @@ import Device from "./Device";
 
 import "./index.scss";
 
+class TabSyncError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "TabSyncError";
+  }
+}
+
 function SyncedTabs() {
   const [syncStatus, setSyncStatus] = useState<boolean>(false);
   const [devices, setDevices] = useState<chrome.sessions.Device[]>([]);
@@ -18,34 +25,38 @@ function SyncedTabs() {
         currentWindow: true,
         active: true,
       });
+
       if (!(tabs && tabs[0] && tabs[0].url)) {
-        throw new Error();
-      }
-      const tab = tabs[0];
-      if (tab.incognito) {
-        setErrorMessage(
+        throw new TabSyncError(whaleApi.i18nGetMessage("synced_tabs__error"));
+      } else if (tabs[0].incognito) {
+        throw new TabSyncError(
           whaleApi.i18nGetMessage("synced_tabs__not_available_in_incognito"),
         );
-        throw new Error();
       }
+
       const data = await whaleApi.sessionsGetDevices(null);
 
       setDevices(data);
 
-      await new Promise(resolve => {
-        setTimeout(() => resolve(), 500); // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
-      });
-      setErrorMessage(whaleApi.i18nGetMessage("synced_tabs__no_synced_tabs"));
+      if (data.length === 0) {
+        throw new TabSyncError(
+          whaleApi.i18nGetMessage("synced_tabs__no_synced_tabs"),
+        );
+      }
 
-      setSyncStatus(false);
+      // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
+      await new Promise(resolve => {
+        setTimeout(() => resolve(), 500);
+      });
     } catch (error) {
-      console.error("SyncedTabs LoadDevice False", error);
-      // setErrorMessage(
-      //   whaleApi.i18nGetMessage("synced_tabs__error")
-      // );
-      setDevices([]);
+      if (error instanceof TabSyncError) {
+        setDevices([]);
+        setErrorMessage(error.message);
+      } else {
+        console.error("SyncedTabs LoadDevice False", error);
+      }
+    } finally {
       setSyncStatus(false);
-      // To do: 에러 발생 시 에러문구 설정하기
     }
   }
 
