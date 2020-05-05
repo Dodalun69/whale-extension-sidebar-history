@@ -33,12 +33,10 @@ function CurrentSiteHistory({ currentUrl }: Props) {
         return result;
       }
       if (history.url.startsWith(urlData.domainWithProtocol)) {
-        return [history, ...result];
+        return [...result, history];
       }
       return result;
     }, []);
-
-    filteredByUrl.reverse();
 
     setHistorys(filteredByUrl);
   }
