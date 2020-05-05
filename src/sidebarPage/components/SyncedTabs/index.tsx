@@ -54,6 +54,8 @@ function SyncedTabs() {
         setErrorMessage(error.message);
       } else {
         console.error("SyncedTabs LoadDevice False", error);
+        setDevices([]);
+        setErrorMessage(whaleApi.i18nGetMessage("synced_tabs__error"));
       }
     } finally {
       setSyncStatus(false);

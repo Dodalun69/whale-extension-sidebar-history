@@ -5,47 +5,42 @@ import * as whaleApi from "../../../util/whaleApi";
 import DateSelector from "./DateSelector";
 import HistoryList from "./HistoryList";
 
-type Props = {};
-
 function EntireHistory() {
   const TODAY_MIDNIGHT = new Date(new Date(Date.now()).setHours(0, 0, 0, 0));
   // history.search 에 쓰일 startDate (startDate 이후 기록만 검색됨)
   const [startDate, setStartDate] = useState<Date>(new Date(TODAY_MIDNIGHT));
   const [historys, setHistorys] = useState<whale.history.HistoryItem[]>([]);
 
-  async function updateHistoryList() {
-    // startDate(현재 선택된 날짜) 하루 동안 방문한 기록만 검색하기 위해
-    // 선택된 날짜 하루 뒤를 endDate 로 정의
-    const endDate = new Date(startDate);
+  async function updateHistoryList(startTime: number) {
+    const endDate = new Date(startTime);
     endDate.setDate(endDate.getDate() + 1);
 
-    // startDate(현재 선택된 날짜의 0시) ~ endDate(24시간 뒤)
-    // 까지의 기록을 검색
     const results = await whaleApi.historySearch({
       text: "",
       maxResults: 0,
-      startTime: startDate.getTime(),
+      startTime,
       endTime: endDate.getTime(),
     });
     setHistorys(results);
   }
 
-  useEffect(() => {
-    // 방문 기록이 추가될때 재로딩
-    whale.history.onVisited.addListener(() => {
-      updateHistoryList();
-    });
-  }, []);
+  function visitUpdateListener() {
+    updateHistoryList(startDate.getTime());
+  }
 
   useEffect(() => {
-    updateHistoryList();
+    updateHistoryList(startDate.getTime());
+
+    whale.history.onVisited.addListener(visitUpdateListener);
+
+    return () => {
+      whale.history.onVisited.removeListener(visitUpdateListener);
+    };
   }, [startDate]);
 
   function onStartDateChange(date: Date) {
     setStartDate(date);
   }
-
-  // console.log("EntireHistory", historys);
 
   return (
     <SectionContainer
@@ -68,6 +63,7 @@ function EntireHistory() {
         fallbackMessage={whaleApi.i18nGetMessage(
           "history__entire_history__no_history_data",
         )}
+        timeLineInfo={{ baseDay: startDate.getDate() }}
       />
     </SectionContainer>
   );

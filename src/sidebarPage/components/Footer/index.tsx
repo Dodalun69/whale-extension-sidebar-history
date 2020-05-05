@@ -1,6 +1,8 @@
 import React from "react";
 import "./index.scss";
 
+import * as whaleApi from "../../../util/whaleApi";
+
 function renderItem(title: string, url: string) {
   function onClickHandler() {
     whale.tabs.create({ url });
@@ -22,7 +24,7 @@ function Footer() {
           "https://github.com/mate131909/whale-extension-sidebar-history",
         )}
         {renderItem(
-          whale.i18n.getMessage("footer__review") || "footer__review",
+          whaleApi.i18nGetMessage("footer__review"),
           "https://store.whale.naver.com/detail/aomdaciidffjjcoeeammnhbahiopjelm",
         )}
       </div>
