@@ -9,12 +9,15 @@ const path = require("path");
 
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackExtensionReloader = require("webpack-extension-reloader");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const {
+  CleanWebpackPlugin
+} = require("clean-webpack-plugin");
 
 const rootDir = path.join(__dirname, "./");
 
 const mode = process.env.NODE_ENV;
-module.exports = (env, options) => {
+
+module.exports = env => {
   const config = {
     mode,
     entry: {
@@ -36,15 +39,12 @@ module.exports = (env, options) => {
       extensions: [".js", ".ts", ".tsx"],
     },
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.(ts|tsx)?$/,
           exclude: /node_modules/,
-          use: [
-            {
-              loader: "ts-loader",
-            },
-          ],
+          use: [{
+            loader: "ts-loader",
+          }, ],
         },
         {
           test: /\.scss$/,
@@ -59,16 +59,7 @@ module.exports = (env, options) => {
       ],
     },
     plugins: [
-      new WebpackExtensionReloader({
-        // port: 9080,
-        // reloadPage: true,
-        entries: {
-          background: "background",
-          extensionPage: ["sidebarPage"],
-        },
-      }),
-      new CopyWebpackPlugin([
-        {
+      new CopyWebpackPlugin([{
           from: path.join(rootDir, "static"),
           to: "./",
         },
@@ -81,12 +72,11 @@ module.exports = (env, options) => {
           transform(content) {
             // 개발 빌드 시에는 보다 편하게 확인할 수 있도록 space 옵션 추가
             let space = 0;
-            if (options.mode === "development") {
+            if (process.env.NODE_ENV === "development") {
               space = 2;
             }
             return Buffer.from(
-              JSON.stringify(
-                {
+              JSON.stringify({
                   version: process.env.npm_package_version,
                   ...JSON.parse(content.toString()),
                 },
@@ -100,6 +90,19 @@ module.exports = (env, options) => {
       ]),
     ],
   };
+
+  if (process.env.NODE_ENV === "development") {
+    config.plugins.push(
+      new WebpackExtensionReloader({
+        // port: 9080,
+        reloadPage: true,
+        entries: {
+          background: "background",
+          extensionPage: ["sidebarPage"],
+        },
+      }),
+    );
+  }
 
   if (process.env.NODE_ENV === "production") {
     config.plugins.push(new CleanWebpackPlugin());

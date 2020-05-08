@@ -3,9 +3,9 @@
   "version": "2.1.0",
   "description": "whale-extension-sidebar-history",
   "scripts": {
-    "build": "SET NODE_ENV=production&& webpack --mode=production",
-    "build-dev": "SET NODE_ENV=production&& webpack --mode=development",
-    "start-reloader": "SET NODE_ENV=development&& webpack --mode=development --watch --env.reloader",
+    "build": "SET NODE_ENV=production&& webpack",
+    "build-dev": "SET NODE_ENV=production&& webpack",
+    "start-reloader": "SET NODE_ENV=development&& webpack --watch",
     "start-dev-server": "webpack-dev-server --hot --mode development --env.hotreload",
     "lint": "eslint src/**/*.ts && eslint src/**/*.tsx",
     "lint:fix": "eslint src/**/*.ts --fix && eslint src/**/*.tsx --fix"
