@@ -64,7 +64,7 @@ function TimeLineHistory({
 
   return (
     <div id="history-list">
-      {historys.map(history => renderHistory(history))}
+      {historys.map((history) => renderHistory(history))}
       {renderTimeDivider(timeFlag.prevHour)}
     </div>
   );
@@ -85,7 +85,7 @@ function HistoryList({
 
   return (
     <div id="history-list">
-      {historys.map(history => (
+      {historys.map((history) => (
         <HistoryItem key={history.id} history={history} />
       ))}
     </div>

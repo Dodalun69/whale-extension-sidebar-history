@@ -3,7 +3,7 @@ export async function sessionsGetDevices(
 ): Promise<chrome.sessions.Device[]> {
   return new Promise((resolve, reject) => {
     try {
-      chrome.sessions.getDevices(filter, data => {
+      chrome.sessions.getDevices(filter, (data) => {
         resolve(data);
       });
     } catch (error) {
@@ -18,7 +18,7 @@ export async function tabsQuery(
 ): Promise<chrome.tabs.Tab[]> {
   return new Promise((resolve, reject) => {
     try {
-      whale.tabs.query(queryInfo, tabs => {
+      whale.tabs.query(queryInfo, (tabs) => {
         resolve(tabs);
       });
     } catch (error) {
@@ -31,7 +31,7 @@ export async function tabsQuery(
 export async function tabsGet(tabId: number): Promise<chrome.tabs.Tab> {
   return new Promise((resolve, reject) => {
     try {
-      whale.tabs.get(tabId, tab => {
+      whale.tabs.get(tabId, (tab) => {
         resolve(tab);
       });
     } catch (error) {
@@ -60,7 +60,7 @@ export async function sidebarActionOnClickedAddListener(
   opened: boolean,
   callback: () => void,
 ) {
-  whale.sidebarAction.onClicked.addListener(result => {
+  whale.sidebarAction.onClicked.addListener((result) => {
     // result object: https://developers.whale.naver.com/api/extensions/sidebarAction/#onClicked
     //
     // eslint-disable-next-line dot-notation

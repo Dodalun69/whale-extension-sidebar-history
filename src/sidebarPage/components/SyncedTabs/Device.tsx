@@ -10,7 +10,7 @@ function Session({ session }: { session: chrome.sessions.Session }) {
     tabIndex: number;
     tabSessionId: string;
     tab: chrome.tabs.Tab;
-  }[] = originalTabs.map(tab => {
+  }[] = originalTabs.map((tab) => {
     // sessionId e.g.: "session_syncfed12as3-asd1-1a2s-asd1-a1sd2f345fg6.397"
     const { sessionId: tabSessionId } = tab;
 
@@ -49,26 +49,30 @@ function getTimeDiffMessage(timeDiff: number): string {
 
   const day = timeDiff / (ONE_HOUR * 24);
   if (day >= 1) {
-    return `${Math.round(day)}${whale.i18n.getMessage("general__day") ||
-      "general__day"}`;
+    return `${Math.round(day)}${
+      whale.i18n.getMessage("general__day") || "general__day"
+    }`;
   }
 
   const hour = (timeDiff % (ONE_HOUR * 24)) / ONE_HOUR;
   if (hour >= 1) {
-    return `${Math.round(hour)}${whale.i18n.getMessage("general__hour") ||
-      "general__hour"}`;
+    return `${Math.round(hour)}${
+      whale.i18n.getMessage("general__hour") || "general__hour"
+    }`;
   }
 
   const min = (timeDiff % ONE_HOUR) / (1000 * 60);
   if (min >= 1) {
-    return `${Math.round(min)}${whale.i18n.getMessage("general__minute") ||
-      "general__minute"}`;
+    return `${Math.round(min)}${
+      whale.i18n.getMessage("general__minute") || "general__minute"
+    }`;
   }
 
   const sec = (timeDiff % (1000 * 60)) / 1000;
 
-  return `${Math.round(sec)}${whale.i18n.getMessage("general__second") ||
-    "general__second"}`;
+  return `${Math.round(sec)}${
+    whale.i18n.getMessage("general__second") || "general__second"
+  }`;
 }
 
 type Props = {
@@ -91,9 +95,9 @@ function Device({ device }: Props) {
       option={
         // eslint-disable-next-line react/jsx-wrap-multilines
         <div className="last-update-time">
-          {`${getTimeDiffMessage(timeDiff)} ${whale.i18n.getMessage(
-            "general__ago",
-          ) || "general__ago"}`}
+          {`${getTimeDiffMessage(timeDiff)} ${
+            whale.i18n.getMessage("general__ago") || "general__ago"
+          }`}
         </div>
       }
       collapsibleConfigure={{

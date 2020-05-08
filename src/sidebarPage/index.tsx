@@ -11,7 +11,7 @@ import "./index.scss";
 // reference: https://developers.whale.naver.com/tutorials/sidebarAction/#%ED%83%90%EC%83%89%EB%B0%94
 window.addEventListener(
   "dragover",
-  event => {
+  (event) => {
     const evt = event;
     evt.preventDefault();
     evt.dataTransfer.effectAllowed = "none";
@@ -21,7 +21,7 @@ window.addEventListener(
 );
 window.addEventListener(
   "drop",
-  event => {
+  (event) => {
     const evt = event;
     evt.preventDefault();
     evt.dataTransfer.effectAllowed = "none";

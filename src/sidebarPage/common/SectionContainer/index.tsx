@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./index.scss";
 
 type Props = {
@@ -43,7 +43,7 @@ function SectionContainer({
         {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
         <div
           className="option"
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
           }}
           role="button"

@@ -25,8 +25,9 @@ function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
 
         const result = {
           time: date.getTime(),
-          message: `${date.getFullYear()} / ${date.getMonth() +
-            1} / ${date.getDate()}`,
+          message: `${date.getFullYear()} / ${
+            date.getMonth() + 1
+          } / ${date.getDate()}`,
         };
 
         if (index === 0) {

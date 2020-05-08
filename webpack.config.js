@@ -9,27 +9,19 @@ const path = require("path");
 
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WebpackExtensionReloader = require("webpack-extension-reloader");
-const {
-  CleanWebpackPlugin
-} = require("clean-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const rootDir = path.join(__dirname, "./");
 
 const mode = process.env.NODE_ENV;
 
-module.exports = env => {
+// eslint-disable-next-line no-unused-vars
+module.exports = (env) => {
   const config = {
     mode,
     entry: {
       sidebarPage: path.join(rootDir, "src", "sidebarPage", "index.tsx"),
       background: path.join(rootDir, "src", "background", "index.ts"),
-      // "contentScript-script-boilerplatePage": path.join(
-      //   rootDir,
-      //   "src",
-      //   "contentScript",
-      //   "script",
-      //   "boilerplatePage.ts",
-      // ),
     },
     output: {
       path: path.join(rootDir, "dist"),
@@ -39,12 +31,15 @@ module.exports = env => {
       extensions: [".js", ".ts", ".tsx"],
     },
     module: {
-      rules: [{
+      rules: [
+        {
           test: /\.(ts|tsx)?$/,
           exclude: /node_modules/,
-          use: [{
-            loader: "ts-loader",
-          }, ],
+          use: [
+            {
+              loader: "ts-loader",
+            },
+          ],
         },
         {
           test: /\.scss$/,
@@ -59,7 +54,8 @@ module.exports = env => {
       ],
     },
     plugins: [
-      new CopyWebpackPlugin([{
+      new CopyWebpackPlugin([
+        {
           from: path.join(rootDir, "static"),
           to: "./",
         },
@@ -76,7 +72,8 @@ module.exports = env => {
               space = 2;
             }
             return Buffer.from(
-              JSON.stringify({
+              JSON.stringify(
+                {
                   version: process.env.npm_package_version,
                   ...JSON.parse(content.toString()),
                 },

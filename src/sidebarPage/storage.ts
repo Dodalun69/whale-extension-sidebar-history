@@ -9,7 +9,7 @@ export enum Key {
 
 export async function getStorageData(key: Key): Promise<any> {
   return new Promise<any>((resolve, reject) => {
-    whale.storage.local.get([key], result => {
+    whale.storage.local.get([key], (result) => {
       if (result === undefined || result[key] === undefined) {
         reject(new Error("undefined"));
       }
@@ -19,7 +19,7 @@ export async function getStorageData(key: Key): Promise<any> {
 }
 
 export async function setStorageData(key: Key, value: any) {
-  return new Promise<any>(resolve => {
+  return new Promise<any>((resolve) => {
     whale.storage.local.set({ [key]: value }, () => resolve());
   });
 }

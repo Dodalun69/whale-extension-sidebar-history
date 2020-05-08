@@ -45,7 +45,7 @@ function SyncedTabs() {
       }
 
       // '동기화 중' 메세지가 너무 빨리 사라지므로 추가
-      await new Promise(resolve => {
+      await new Promise((resolve) => {
         setTimeout(() => resolve(), 500);
       });
     } catch (error) {
