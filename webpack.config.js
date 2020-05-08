@@ -64,13 +64,13 @@ module.exports = (env) => {
           to: "./_locales/",
         },
         {
-          from: path.join(rootDir, "src/manifest.json"),
+          from: path.join(
+            rootDir,
+            process.env.NODE_ENV === "development"
+              ? "src/manifest.dev.json"
+              : "src/manifest.prod.json",
+          ),
           transform(content) {
-            // 개발 빌드 시에는 보다 편하게 확인할 수 있도록 space 옵션 추가
-            let space = 0;
-            if (process.env.NODE_ENV === "development") {
-              space = 2;
-            }
             return Buffer.from(
               JSON.stringify(
                 {
@@ -78,7 +78,7 @@ module.exports = (env) => {
                   ...JSON.parse(content.toString()),
                 },
                 null,
-                space,
+                process.env.NODE_ENV === "development" ? 2 : 0,
               ),
             );
           },
