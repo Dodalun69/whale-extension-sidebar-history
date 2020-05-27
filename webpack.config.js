@@ -13,12 +13,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const rootDir = path.join(__dirname, "./");
 
-const mode = process.env.NODE_ENV;
-
-// eslint-disable-next-line no-unused-vars
-module.exports = (env) => {
+module.exports = () => {
   const config = {
-    mode,
+    mode: process.env.NODE_ENV,
     entry: {
       sidebarPage: path.join(rootDir, "src", "sidebarPage", "index.tsx"),
       background: path.join(rootDir, "src", "background", "index.ts"),
