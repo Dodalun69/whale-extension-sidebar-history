@@ -44,7 +44,6 @@ function EntireHistory() {
 
   return (
     <SectionContainer
-      id="entire-history"
       title={whaleApi.i18nGetMessage("history__entire_history")}
       option={
         // eslint-disable-next-line react/jsx-wrap-multilines

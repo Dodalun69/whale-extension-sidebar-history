@@ -5,14 +5,8 @@ type Props = {
   history: whale.history.HistoryItem;
 };
 
-function HistoryItem({ history }: Props) {
+export default function HistoryItem({ history }: Props) {
   const { title, url } = history;
 
-  return (
-    <div className="history-item">
-      <LinkContainer title={title} url={url} />
-    </div>
-  );
+  return <LinkContainer title={title} url={url} />;
 }
-
-export default HistoryItem;

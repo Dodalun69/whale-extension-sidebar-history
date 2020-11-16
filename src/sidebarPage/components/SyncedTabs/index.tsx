@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { PageContainer } from "../../common";
 import * as whaleApi from "../../../util/whaleApi";
 import Device from "./Device";
-
-import "./index.scss";
 
 class TabSyncError extends Error {
   constructor(message: string) {
@@ -12,7 +11,7 @@ class TabSyncError extends Error {
   }
 }
 
-function SyncedTabs() {
+export default function SyncedTabs() {
   const [syncStatus, setSyncStatus] = useState<boolean>(false);
   const [devices, setDevices] = useState<chrome.sessions.Device[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -74,33 +73,65 @@ function SyncedTabs() {
 
   return (
     <PageContainer
-      id="synced-tabs"
       title={whaleApi.i18nGetMessage("synced_tabs")}
-      desc={whaleApi.i18nGetMessage("synced_tabs__desc")}
+      option={
+        // eslint-disable-next-line react/jsx-wrap-multilines
+        <OptionWrapper>
+          <div>{whaleApi.i18nGetMessage("synced_tabs__desc")}</div>
+          <ManualSyncButton
+            type="button"
+            onClick={onManualSync}
+            disabled={syncStatus}
+          >
+            {syncStatus
+              ? whaleApi.i18nGetMessage("synced_tabs__synchronizing")
+              : whaleApi.i18nGetMessage("synced_tabs__manual_sync")}
+          </ManualSyncButton>
+        </OptionWrapper>
+      }
     >
-      <div id="sync-control">
-        <button type="button" onClick={onManualSync} disabled={syncStatus}>
-          {syncStatus
-            ? whaleApi.i18nGetMessage("synced_tabs__synchronizing")
-            : whaleApi.i18nGetMessage("synced_tabs__manual_sync")}
-        </button>
-      </div>
       <div className="content">
         {devices.length > 0 ? (
-          devices.map((device, index) => [
-            <Device device={device} />,
-            index !== devices.length - 1 ? (
-              <div style={{ marginBottom: "12px" }} />
-            ) : null,
-          ])
+          devices.map((device) => <Device device={device} />)
         ) : (
-          <div className="announcement">
+          <FallbackAnnouncement>
             <div>{errorMessage}</div>
-          </div>
+          </FallbackAnnouncement>
         )}
       </div>
     </PageContainer>
   );
 }
 
-export default SyncedTabs;
+const OptionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const ManualSyncButton = styled.button`
+  all: unset;
+
+  text-decoration: underline;
+  color: var(--primary-font-light-color);
+  font-family: inherit;
+
+  &:disabled,
+  &[disabled] {
+    /* text-decoration: none; */
+  }
+`;
+
+const FallbackAnnouncement = styled.div`
+  background-color: var(--primary-background-color);
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+
+  height: 22px;
+
+  font-size: var(--primary-small-font-size);
+  color: var(--primary-font-light-color);
+
+  display: flex;
+  align-items: center;
+`;

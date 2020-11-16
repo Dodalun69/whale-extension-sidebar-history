@@ -42,12 +42,10 @@ function History() {
 
   return (
     <PageContainer
-      id="history"
       title={whaleApi.i18nGetMessage("history")}
-      desc={whaleApi.i18nGetMessage("history__desc")}
+      option={<div>{whaleApi.i18nGetMessage("history__desc")}</div>}
     >
       <CurrentSiteHistory currentUrl={currentActiveTabUrl} />
-      <div style={{ marginBottom: "12px" }} />
       <EntireHistory />
     </PageContainer>
   );

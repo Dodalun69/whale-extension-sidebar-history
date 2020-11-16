@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import "./index.scss";
+import styled from "styled-components";
 
 type Props = {
-  id?: string;
   title: string;
   option?: React.ReactNode;
-  subTitle?: string;
   collapsibleConfigure?: {
     defaultStatus: boolean;
     isFixed?: boolean;
@@ -13,8 +11,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function SectionContainer({
-  id,
+export default function SectionContainer({
   title,
   option,
   collapsibleConfigure = {
@@ -34,14 +31,12 @@ function SectionContainer({
   }
 
   return (
-    <div id={id} className="section-container">
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-      <header onClick={onClick} role="button" tabIndex={0}>
-        <div className="title-container">
-          <h1 className="title">{title}</h1>
-        </div>
-        {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
-        <div
+    <Wrapper>
+      <Header onClick={onClick} role="button" tabIndex={0}>
+        <TitleWrapper>
+          <Title>{title}</Title>
+        </TitleWrapper>
+        <Option
           className="option"
           onClick={(e) => {
             e.stopPropagation();
@@ -50,11 +45,61 @@ function SectionContainer({
           tabIndex={0}
         >
           {option || null}
-        </div>
-      </header>
-      {isOpenState ? <div className="content">{children}</div> : <div />}
-    </div>
+        </Option>
+      </Header>
+      {isOpenState && (
+        <>
+          <hr />
+          <ContentWrapper>{children}</ContentWrapper>
+        </>
+      )}
+    </Wrapper>
   );
 }
 
-export default SectionContainer;
+const Wrapper = styled.div`
+  background-color: var(--primary-background-color);
+
+  margin-bottom: 12px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+`;
+
+const Header = styled.div`
+  padding-left: 8px;
+  padding-right: 8px;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Option = styled.div`
+  &:focus {
+    outline: none;
+  }
+`;
+
+const TitleWrapper = styled.div`
+  height: 22px;
+  display: flex;
+  align-items: center;
+`;
+
+const Title = styled.div`
+  color: var(--primary-font-color);
+  font-size: var(--primary-medium-font-size);
+`;
+
+const ContentWrapper = styled.div`
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: var(--primary-background-color);
+`;

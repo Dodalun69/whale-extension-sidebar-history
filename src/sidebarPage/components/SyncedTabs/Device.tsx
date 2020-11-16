@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { SectionContainer } from "../../common";
 import TabItem from "./TabItem";
 
@@ -79,7 +80,7 @@ type Props = {
   device: chrome.sessions.Device;
 };
 
-function Device({ device }: Props) {
+export default function Device({ device }: Props) {
   const { deviceName, sessions: originalSessions } = device;
 
   const lastModified =
@@ -94,11 +95,11 @@ function Device({ device }: Props) {
       title={deviceName}
       option={
         // eslint-disable-next-line react/jsx-wrap-multilines
-        <div className="last-update-time">
+        <LastUpdateTime>
           {`${getTimeDiffMessage(timeDiff)} ${
             whale.i18n.getMessage("general__ago") || "general__ago"
           }`}
-        </div>
+        </LastUpdateTime>
       }
       collapsibleConfigure={{
         defaultStatus: timeDiff < 3600000,
@@ -108,15 +109,24 @@ function Device({ device }: Props) {
       {originalSessions.map((session, index) => [
         <Session key={session.window.sessionId} session={session} />,
         index !== originalSessions.length - 1 ? (
-          <div className="session-divider">
-            <div />
+          <SessionDivider>
             <hr />
-            <div />
-          </div>
+          </SessionDivider>
         ) : null,
       ])}
     </SectionContainer>
   );
 }
 
-export default Device;
+const LastUpdateTime = styled.div`
+  font-size: var(--primary-small-font-size);
+  color: var(--primary-font-light-color);
+`;
+
+const SessionDivider = styled.div`
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  padding-left: 40px;
+  padding-right: 40px;
+`;

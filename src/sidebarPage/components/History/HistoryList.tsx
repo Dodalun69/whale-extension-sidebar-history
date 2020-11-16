@@ -1,7 +1,6 @@
 import React from "react";
+import styled from "styled-components";
 import HistoryItem from "./HistoryItem";
-
-import "./HistoryList.scss";
 
 type HistoryListProps = {
   historys: whale.history.HistoryItem[];
@@ -28,11 +27,11 @@ function TimeLineHistory({
 
   function renderTimeDivider(time: number) {
     return (
-      <div className="time-divider">
+      <TimeDivider>
         <hr />
         <div>{`${time < 10 ? `0${time}` : time} : 00`}</div>
         <hr />
-      </div>
+      </TimeDivider>
     );
   }
 
@@ -70,13 +69,32 @@ function TimeLineHistory({
   );
 }
 
-function HistoryList({
+const TimeDivider = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+  div {
+    text-align: center;
+    width: 60px;
+    font-size: var(--primary-small-font-size);
+    color: var(--primary-font-light-color);
+  }
+
+  hr {
+    width: 100px;
+  }
+`;
+
+export default function HistoryList({
   historys,
   fallbackMessage,
   timeLineInfo,
 }: HistoryListProps) {
   if (!(historys && historys.length > 0)) {
-    return <div id="history-list-announcement">{fallbackMessage}</div>;
+    return <FallbackAnnouncement>{fallbackMessage}</FallbackAnnouncement>;
   }
 
   if (timeLineInfo) {
@@ -92,4 +110,10 @@ function HistoryList({
   );
 }
 
-export default HistoryList;
+const FallbackAnnouncement = styled.div`
+  padding-left: 8px;
+  padding-right: 8px;
+
+  font-size: var(--primary-small-font-size);
+  color: var(--primary-font-light-color);
+`;

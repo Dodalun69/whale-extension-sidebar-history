@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 import * as whaleApi from "../../../util/whaleApi";
-import "./DateSelector.scss";
 
 type DateSelectorProps = {
   TODAY: number;
   onSelect: (date: Date) => void;
 };
 
-function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
+export default function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
   // 최대 10일 전 까지만 선택 가능하도록 지정
   const SELECT_LENGTH = 10;
 
@@ -58,18 +58,35 @@ function DateSelector({ TODAY, onSelect }: DateSelectorProps) {
   }
 
   return (
-    <div id="date-selector">
-      <div className="selector">
-        <select onChange={onSelectorChange} defaultValue={selectedDateTime}>
-          {dateTimeOptions.map(({ time, message }) => (
-            <option key={time} value={time}>
-              {message}
-            </option>
-          ))}
-        </select>
-      </div>
-    </div>
+    <Wrapper>
+      <Selector onChange={onSelectorChange} defaultValue={selectedDateTime}>
+        {dateTimeOptions.map(({ time, message }) => (
+          <option key={time} value={time}>
+            {message}
+          </option>
+        ))}
+      </Selector>
+    </Wrapper>
   );
 }
 
-export default DateSelector;
+const Wrapper = styled.div`
+  font-size: var(--primary-small-font-size);
+`;
+
+const Selector = styled.select`
+  outline: none;
+  -webkit-appearance: none;
+  /* border: none; */
+  border-color: var(--primary-border-color);
+  background: url(/img/arrow-down.svg) calc(100% - 15px) center no-repeat;
+  background-size: 12px;
+  background-color: var(--primary-background-color);
+  color: var(--primary-font-color);
+  min-width: 180px;
+  padding: 4px 16px 4px 12px;
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--primary-font-light-color);
+  }
+`;

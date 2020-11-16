@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 
+import styled from "styled-components";
 import { SectionContainer } from "../../common";
 import * as whaleApi from "../../../util/whaleApi";
 import HistoryList from "./HistoryList";
-
-import "./CurrentSiteHistory.scss";
 
 type Props = {
   currentUrl: string | null;
 };
 
-function CurrentSiteHistory({ currentUrl }: Props) {
+export default function CurrentSiteHistory({ currentUrl }: Props) {
   const [urlData, setUrlData] = useState<{
     fullUrl: string;
     domainWithProtocol: string;
@@ -68,9 +67,8 @@ function CurrentSiteHistory({ currentUrl }: Props) {
   if (currentUrl === null || urlData === null) {
     return (
       <SectionContainer
-        id="current-site-history"
         title={whaleApi.i18nGetMessage("history__current_site_history")}
-        option={<div className="current-site-url">unknown</div>}
+        option={<CurrentSiteDomain>unknown</CurrentSiteDomain>}
       >
         <HistoryList
           historys={[]}
@@ -84,12 +82,8 @@ function CurrentSiteHistory({ currentUrl }: Props) {
 
   return (
     <SectionContainer
-      id="current-site-history"
       title={whaleApi.i18nGetMessage("history__current_site_history")}
-      option={
-        // eslint-disable-next-line react/jsx-wrap-multilines
-        <div className="current-site-url">{urlData.domain}</div>
-      }
+      option={<CurrentSiteDomain>{urlData.domain}</CurrentSiteDomain>}
     >
       <HistoryList
         historys={historys}
@@ -101,4 +95,11 @@ function CurrentSiteHistory({ currentUrl }: Props) {
   );
 }
 
-export default CurrentSiteHistory;
+const CurrentSiteDomain = styled.div`
+  max-width: 140px;
+  font-size: var(--primary-small-font-size);
+  color: var(--primary-font-light-color);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;

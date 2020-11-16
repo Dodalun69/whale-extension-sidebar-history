@@ -1,37 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import "./global.scss";
-import "./App.scss";
 
-import * as whaleApi from "../util/whaleApi";
+import styled from "styled-components";
 
+import Header from "./components/Header";
 import SyncedTabs from "./components/SyncedTabs";
 import History from "./components/History";
 import Footer from "./components/Footer";
 
-import { Key, getStorageData } from "./storage";
-
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header>
-        <div>
-          <h1>{whaleApi.i18nGetMessage("header__title")}</h1>
-          <button
-            type="button"
-            onClick={() => whale.tabs.create({ url: "whale://history/" })}
-          >
-            {whaleApi.i18nGetMessage("header__open_whale_history_page")}
-          </button>
-        </div>
-      </header>
-      <main>
+    <Wrapper>
+      <Header />
+      <ContentWrapper>
         <SyncedTabs />
+        <div style={{ height: "16px" }} />
         <History />
-      </main>
+      </ContentWrapper>
       <Footer />
-    </div>
+    </Wrapper>
   );
 }
 
-export default App;
+const Wrapper = styled.div`
+  height: 100%;
+`;
+
+const ContentWrapper = styled.div`
+  margin-top: 50px;
+  margin-bottom: 100px;
+
+  min-height: calc(100vh - (50px + 100px + 37px));
+`;

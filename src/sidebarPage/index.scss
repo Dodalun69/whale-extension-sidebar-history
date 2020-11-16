@@ -1,5 +1,10 @@
 
 html, body {
+  background-color: var(--entire-background-color);
   margin: 0;
   padding: 0;
+
+  // font-family: 'Roboto', 'Noto Sans CJK KR', Arial, sans-serif;
+  // font-family: Arial, sans-serif;
+  font-family: 'Roboto', Arial, sans-serif;
 }

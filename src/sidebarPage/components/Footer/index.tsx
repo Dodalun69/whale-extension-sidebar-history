@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.scss";
+import styled from "styled-components";
 
 import * as whaleApi from "../../../util/whaleApi";
 
@@ -8,17 +8,25 @@ function renderItem(title: string, url: string) {
     whale.tabs.create({ url });
   }
   return (
-    <button type="button" onClick={onClickHandler}>
+    <LinkButton type="button" onClick={onClickHandler}>
       {title}
-    </button>
+    </LinkButton>
   );
 }
 
-function Footer() {
+const LinkButton = styled.button`
+  all: unset;
+
+  color: var(--primary-font-light-color);
+  font-size: var(--primary-small-font-size);
+  font-family: inherit;
+`;
+
+export default function Footer() {
   return (
-    <div id="footer">
+    <FooterWrapper>
       <hr />
-      <div className="item-container">
+      <LinkButtonsWrapper>
         {renderItem(
           "GitHub (BSD 3-clause)",
           "https://github.com/mate131909/whale-extension-sidebar-history",
@@ -27,9 +35,20 @@ function Footer() {
           whaleApi.i18nGetMessage("footer__review"),
           "https://store.whale.naver.com/detail/aomdaciidffjjcoeeammnhbahiopjelm",
         )}
-      </div>
-    </div>
+      </LinkButtonsWrapper>
+    </FooterWrapper>
   );
 }
 
-export default Footer;
+const FooterWrapper = styled.div`
+  background-color: var(--primary-light-background-color);
+`;
+
+const LinkButtonsWrapper = styled.div`
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 36px;
+
+  display: flex;
+  justify-content: space-around;
+`;
