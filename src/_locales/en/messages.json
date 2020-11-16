@@ -8,8 +8,7 @@
     "description": "The description of the application, displayed in the web store."
   },
   "header__title": {
-    "message": "Sidebar History",
-    "description": "The Title of the application"
+    "message": "History"
   },
   "header__open_whale_history_page": {
     "message": "Open Whale History Page"
