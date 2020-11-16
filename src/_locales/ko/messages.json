@@ -14,36 +14,6 @@
   "header__open_whale_history_page": {
     "message": "웨일 방문기록 페이지로"
   },
-  "announcement": {
-    "message": "안내"
-  },
-  "announcement__desc": {
-    "message": "2.0.0 (2020-04-22 업데이트)"
-  },
-  "announcement__notice": {
-    "message": "공지"
-  },
-  "announcement__notice_1": {
-    "message": "이 확장앱은 웨일 공식 확장앱이 아닌, 개인 유저가 제작한 확장앱입니다."
-  },
-  "announcement__notice_2": {
-    "message": "개선 및 문제점은 웨일 스토어 댓글에 남겨주세요. (최하단의 '리뷰 남기기' 클릭)"
-  },
-  "announcement__tip": {
-    "message": "팁"
-  },
-  "announcement__tip_1": {
-    "message": "'다른 기기의 탭' 목록은 이 페이지가 열릴 때 자동으로 동기화됩니다. '수동 동기화' 기능은 실시간 변동이 필요할 때만 사용하시면 됩니다."
-  },
-  "announcement__tip_2": {
-    "message": "'방문 기록'은 현재 기기의 기록만 표시됩니다. 다른 기기의 기록을 포함한 전체 기록을 확인하시려면 최상단의 '웨일 방문 기록 페이지로'를 클릭해주세요."
-  },
-  "announcement__never_see_again": {
-    "message": "다시 보지 않기"
-  },
-  "announcement__close": {
-    "message": "닫기"
-  },
   "synced_tabs": {
     "message": "다른 기기의 탭"
   },

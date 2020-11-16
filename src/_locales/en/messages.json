@@ -14,36 +14,6 @@
   "header__open_whale_history_page": {
     "message": "Open Whale History Page"
   },
-  "announcement": {
-    "message": "Announcement"
-  },
-  "announcement__desc": {
-    "message": "2.0.0 (2020-04-22 Update)"
-  },
-  "announcement__notice": {
-    "message": "Notice"
-  },
-  "announcement__notice_1": {
-    "message": "This extension is produced by a personal user. This is not an official extension for Whale."
-  },
-  "announcement__notice_2": {
-    "message": "Please leave your improvements and problems in the Whale Store comments. (Click 'Leave Comment' at the bottom)"
-  },
-  "announcement__tip": {
-    "message": "Tip"
-  },
-  "announcement__tip_1": {
-    "message": "The 'Other Devices Tabs' list is automatically synchronized when this page opens. Click the 'Manual Sync' only when real-time variation is required."
-  },
-  "announcement__tip_2": {
-    "message": "The 'History' list shows only the current device's history. To view the full history, including the historys of other devices, click on the top 'Open Whale History Page'."
-  },
-  "announcement__never_see_again": {
-    "message": "Never see again"
-  },
-  "announcement__close": {
-    "message": "Close"
-  },
   "synced_tabs": {
     "message": "Other Devices Tabs"
   },
