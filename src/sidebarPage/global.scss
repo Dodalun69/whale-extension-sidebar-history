@@ -4,27 +4,20 @@
   --primary-light-background-color: #e8e8e8;
   --primary-border-color: #efefef;
 
-  --primary-color: #000000;
-  --primary-light-color: #808080;
-  --primary-font-color: #383835;
-  --primary-font-light-color: #777777;
+  --primary-font-color: #000000;
+  --primary-font-light-color: #808080;
 
   --primary-small-font-size: 14px;
   --primary-medium-font-size: 16px;
   --primary-big-font-size: 18px;
 
   @media (prefers-color-scheme: dark) {
-    // --entire-background-color: #1d1e20;
-    // --primary-background-color: #1d1e20;
-    // --primary-light-background-color: #282828;
-
     --entire-background-color: #282828;
     --primary-background-color: #282828;
     --primary-light-background-color: #1d1e20;
 
     --primary-border-color: #303030;
-    --primary-color: #fbfbfb;
-    --primary-light-color: lightgrey;
+
     --primary-font-color: #fbfbfb;
     --primary-font-light-color: lightgrey;
   }
