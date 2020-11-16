@@ -1,7 +1,3 @@
-/* eslint-disable lines-around-directive */
-// eslint-disable-next-line strict
-"use strict";
-
 // eslint-disable-next-line no-unused-vars
 const webpack = require("webpack");
 
@@ -13,7 +9,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const rootDir = path.join(__dirname, "./");
 
-module.exports = () => {
+module.exports = (env) => {
   const config = {
     mode: process.env.NODE_ENV,
     entry: {
@@ -86,16 +82,19 @@ module.exports = () => {
   };
 
   if (process.env.NODE_ENV === "development") {
-    config.plugins.push(
-      new WebpackExtensionReloader({
-        // port: 9080,
-        reloadPage: true,
-        entries: {
-          background: "background",
-          extensionPage: ["sidebarPage"],
-        },
-      }),
-    );
+    if (env && env.extensionReloader) {
+      config.plugins.push(
+        new WebpackExtensionReloader({
+          port: 9090,
+          reloadPage: true,
+          entries: {
+            contentScript: ["contentScript-script-all"],
+            extensionPage: ["sidebarPage"],
+            background: "background",
+          },
+        }),
+      );
+    }
   }
 
   if (process.env.NODE_ENV === "production") {

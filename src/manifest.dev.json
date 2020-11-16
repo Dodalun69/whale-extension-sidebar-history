@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "__MSG_appName__",
-  "description": "__MSG_appDesc__",
+  "name": "[dev]__MSG_appName__",
+  "description": "[dev]__MSG_appDesc__",
 
   "default_locale": "en",
 
@@ -17,7 +17,7 @@
       "128": "icon/icon-128.png"
     },
     "default_page": "sidebarPage.html",
-    "default_title": "__MSG_appName__",
+    "default_title": "[dev]__MSG_appName__",
     "use_navigation_bar": false
   },
   "background": {

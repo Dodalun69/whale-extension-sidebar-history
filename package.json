@@ -5,12 +5,11 @@
   "scripts": {
     "build": "SET NODE_ENV=production&& webpack",
     "build-dev": "SET NODE_ENV=development&& webpack",
-    "start": "SET NODE_ENV=development&& webpack --watch",
+    "start": "SET NODE_ENV=development&& webpack --watch --env.extensionReloader=true",
     "lint": "eslint src/**/*.ts && eslint src/**/*.tsx",
     "lint:fix": "eslint src/**/*.ts --fix && eslint src/**/*.tsx --fix"
   },
   "dependencies": {
-    "@hot-loader/react-dom": "^16.13.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21"
