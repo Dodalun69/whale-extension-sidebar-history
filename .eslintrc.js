@@ -12,7 +12,8 @@ module.exports = {
       "@typescript-eslint/parser": [".ts", ".tsx"],
     },
     "import/resolver": {
-      node: {
+      alias: {
+        map: [["@src", "./src"]],
         extensions: [".ts", ".tsx", ".js", ".jsx"],
       },
     },

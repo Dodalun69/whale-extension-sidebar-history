@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { SectionContainer } from "../../common";
+import { SectionContainer } from "@src/sidebarPage/common";
 import TabItem from "./TabItem";
 
 function Session({ session }: { session: chrome.sessions.Session }) {

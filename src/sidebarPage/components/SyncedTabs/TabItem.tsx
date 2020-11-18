@@ -1,5 +1,5 @@
 import React from "react";
-import LinkContainer from "../../common/LinkContainer";
+import { LinkContainer } from "@src/sidebarPage/common";
 
 type Props = {
   tab: whale.tabs.Tab;

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { PageContainer } from "../../common";
-import * as whaleApi from "../../../util/whaleApi";
+import * as whaleApi from "@src/util/whaleApi";
+import { PageContainer } from "@src/sidebarPage/common";
+
 import Device from "./Device";
 
 class TabSyncError extends Error {
