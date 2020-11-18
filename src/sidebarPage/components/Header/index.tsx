@@ -28,7 +28,7 @@ const HeaderWrapper = styled.div`
   width: 100%;
 
   background-color: var(--primary-background-color);
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const FlexWrapper = styled.div`
