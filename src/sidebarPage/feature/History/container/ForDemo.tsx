@@ -6,26 +6,33 @@ export default function HistoryContainerForDemo() {
   const TODAY_MIDNIGHT = new Date(new Date(Date.now()).setHours(0, 0, 0, 0));
 
   const currentActiveTabUrlData = {
-    fullUrl: "https://www.google.co.kr/",
-    domainWithProtocol: "https://www.google.co.kr/",
-    domain: "www.google.co.kr",
+    fullUrl: "https://whale.naver.com/ko/",
+    domainWithProtocol: "https://whale.naver.com/ko/",
+    domain: "whale.naver.com",
   };
   const currentSiteHistorys = createDummyHistoryItems(
     {
-      title: "Google",
-      url: "https://www.google.co.kr/",
+      title: "Whale",
+      url: "https://whale.naver.com/ko/",
     },
-    5,
+    1,
   );
 
   const searchDate = new Date(TODAY_MIDNIGHT);
-  const dateHistorys = createDummyHistoryItems(
-    {
-      title: "Google",
-      url: "https://www.google.co.kr/",
-    },
-    20,
-  );
+  const dateHistorys = [
+    createDummyHistoryItem(
+      "Whale",
+      "https://whale.naver.com/ko/",
+      new Date(Date.now()).setHours(0, 20 * 20, 0, 0),
+    ),
+    ...createDummyHistoryItems(
+      {
+        title: "Google",
+        url: "https://www.google.co.kr/",
+      },
+      20,
+    ),
+  ];
 
   return (
     <HistoryView
