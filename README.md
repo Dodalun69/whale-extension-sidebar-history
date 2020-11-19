@@ -1,6 +1,6 @@
 # 웨일 확장앱 - 사이드바 방문 기록
 
-![Sidebar History Preview Kor](https://user-images.githubusercontent.com/51040091/92964567-4ad2bb00-f4af-11ea-9826-ed8b184288f8.png)
+![사이드바 방문 기록 미리보기](https://user-images.githubusercontent.com/51040091/99724143-8b296780-2af6-11eb-8307-38669ec65124.png)
 
 다른 기기의 탭, 방문 기록을 사이드바에서 간단히 확인할 수 있습니다.
 
