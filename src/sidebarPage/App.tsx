@@ -4,10 +4,10 @@ import "./global.scss";
 
 import styled from "styled-components";
 
-import Header from "./components/Header";
-import SyncedTabs from "./components/SyncedTabs";
-import History from "./components/History";
-import Footer from "./components/Footer";
+import Header from "@src/sidebarPage/feature/Header/view";
+import Footer from "@src/sidebarPage/feature/Footer/view";
+import SyncedTabs from "@src/sidebarPage/feature/SyncedTabs/container";
+import History from "@src/sidebarPage/feature/History/container";
 
 export default function App() {
   return (

@@ -33,5 +33,6 @@ module.exports = {
       },
     ],
     "react/jsx-filename-extension": 0,
+    "no-use-before-define": "off",
   },
 };
