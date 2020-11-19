@@ -3,6 +3,61 @@ import styled from "styled-components";
 import { SectionContainer } from "@src/sidebarPage/common";
 import TabItem from "./TabItem";
 
+type Props = {
+  device: chrome.sessions.Device;
+};
+
+export default function Device({ device }: Props) {
+  const { deviceName, sessions: originalSessions } = device;
+
+  const lastModified =
+    originalSessions[0] && originalSessions[0].lastModified
+      ? originalSessions[0].lastModified
+      : 0;
+
+  const timeDiff = Date.now() - lastModified * 1000;
+
+  return (
+    <SectionContainer
+      title={deviceName}
+      option={
+        // eslint-disable-next-line react/jsx-wrap-multilines
+        <LastUpdateTime>
+          {`${getTimeDiffMessage(timeDiff)} ${
+            whale.i18n.getMessage("general__ago") || "general__ago"
+          }`}
+        </LastUpdateTime>
+      }
+      collapsibleConfigure={{
+        defaultStatus: timeDiff < 3600000,
+      }}
+      // 최근 수정된 시간 1시간 내인 경우만 기본으로 열어두기
+    >
+      {originalSessions.map((session, index) => [
+        <Session key={session.window.sessionId} session={session} />,
+        index !== originalSessions.length - 1 ? (
+          <SessionDivider>
+            <hr />
+          </SessionDivider>
+        ) : null,
+      ])}
+    </SectionContainer>
+  );
+}
+
+const LastUpdateTime = styled.div`
+  font-size: var(--primary-small-font-size);
+  color: var(--primary-font-light-color);
+`;
+
+const SessionDivider = styled.div`
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+  padding-left: 40px;
+  padding-right: 40px;
+`;
+
 function Session({ session }: { session: chrome.sessions.Session }) {
   // const { lastModified } = session;
   const { tabs: originalTabs } = session.window;
@@ -75,58 +130,3 @@ function getTimeDiffMessage(timeDiff: number): string {
     whale.i18n.getMessage("general__second") || "general__second"
   }`;
 }
-
-type Props = {
-  device: chrome.sessions.Device;
-};
-
-export default function Device({ device }: Props) {
-  const { deviceName, sessions: originalSessions } = device;
-
-  const lastModified =
-    originalSessions[0] && originalSessions[0].lastModified
-      ? originalSessions[0].lastModified
-      : 0;
-
-  const timeDiff = Date.now() - lastModified * 1000;
-
-  return (
-    <SectionContainer
-      title={deviceName}
-      option={
-        // eslint-disable-next-line react/jsx-wrap-multilines
-        <LastUpdateTime>
-          {`${getTimeDiffMessage(timeDiff)} ${
-            whale.i18n.getMessage("general__ago") || "general__ago"
-          }`}
-        </LastUpdateTime>
-      }
-      collapsibleConfigure={{
-        defaultStatus: timeDiff < 3600000,
-      }}
-      // 최근 수정된 시간 1시간 내인 경우만 기본으로 열어두기
-    >
-      {originalSessions.map((session, index) => [
-        <Session key={session.window.sessionId} session={session} />,
-        index !== originalSessions.length - 1 ? (
-          <SessionDivider>
-            <hr />
-          </SessionDivider>
-        ) : null,
-      ])}
-    </SectionContainer>
-  );
-}
-
-const LastUpdateTime = styled.div`
-  font-size: var(--primary-small-font-size);
-  color: var(--primary-font-light-color);
-`;
-
-const SessionDivider = styled.div`
-  padding-top: 12px;
-  padding-bottom: 12px;
-
-  padding-left: 40px;
-  padding-right: 40px;
-`;

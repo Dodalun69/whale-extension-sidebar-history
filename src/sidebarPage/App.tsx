@@ -8,6 +8,8 @@ import Header from "@src/sidebarPage/feature/Header/view";
 import Footer from "@src/sidebarPage/feature/Footer/view";
 import SyncedTabs from "@src/sidebarPage/feature/SyncedTabs/container";
 import History from "@src/sidebarPage/feature/History/container";
+import SyncedTabsForDemo from "@src/sidebarPage/feature/SyncedTabs/container/ForDemo";
+import HistoryForDemo from "@src/sidebarPage/feature/History/container/ForDemo";
 
 export default function App() {
   return (
@@ -18,6 +20,11 @@ export default function App() {
         <div style={{ height: "16px" }} />
         <History />
       </ContentWrapper>
+      {/* <ContentWrapper>
+        <SyncedTabsForDemo />
+        <div style={{ height: "16px" }} />
+        <HistoryForDemo />
+      </ContentWrapper> */}
       <Footer />
     </Wrapper>
   );
